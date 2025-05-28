@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+    <category name="trivium">
+        <level name="level1">
+            <question>
+                <text>Qual é o plural de 'mão'?</text>
+                <option correct="false">mãosinhos</option>
+                <option correct="true">mãos</option>
+                <option correct="false">mões</option>
+                <option correct="false">mãozadas</option>
+            </question>
+            <question>
+                <text>Qual a função de um substantivo?</text>
+                <option correct="false">Indicar uma ação</option>
+                <option correct="true">Nomear seres ou coisas</option>
+                <option correct="false">Qualificar um verbo</option>
+                <option correct="false">Ligar duas frases</option>
+            </question>
+            <question>
+                <text>O que é uma hipérbole?</text>
+                <option correct="false">Uma repetição de sons</option>
+                <option correct="true">Um exagero intencional</option>
+                <option correct="false">Uma comparação sutil</option>
+                <option correct="false">Uma pergunta retórica</option>
+            </question>
+            <question>
+                <text>Qual a sílaba tônica da palavra 'árvore'?</text>
+                <option correct="false">vor</option>
+                <option correct="true">ár</option>
+                <option correct="false">re</option>
+                <option correct="false">árv</option>
+            </question>
+            <question>
+                <text>Em uma frase, o que é o sujeito?</text>
+                <option correct="true">Quem pratica ou sofre a ação</option>
+                <option correct="false">A qualidade de algo</option>
+                <option correct="false">O tempo da ação</option>
+                <option correct="false">Uma conjunção</option>
+            </question>
+            <question>
+                <text>Qual o oposto de 'sinônimo'?</text>
+                <option correct="false">Parônimo</option>
+                <option correct="true">Antônimo</option>
+                <option correct="false">Homônimo</option>
+                <option correct="false">Acrônimo</option>
+            </question>
+            <question>
+                <text>O que é uma oração coordenada sindética?</text>
+                <option correct="false">Aquela que tem verbo</option>
+                <option correct="true">Aquela que tem conjunção</option>
+                <option correct="false">Aquela que não tem sujeito</option>
+                <option correct="false">Aquela que é independente</option>
+            </question>
+            <question>
+                <text>A figura de linguagem 'eufemismo' serve para:</text>
+                <option correct="true">Suavizar uma expressão</option>
+                <option correct="false">Intensificar uma ideia</option>
+                <option correct="false">Fazer uma crítica</option>
+                <option correct="false">Criar suspense</option>
+            </question>
+        </level>
+        <level name="level2">
+            <question>
+                <text>O que é um silogismo na lógica?</text>
+                <option correct="false">Um erro de raciocínio</option>
+                <option correct="true">Um tipo de argumento dedutivo</option>
+                <option correct="false">Uma contradição</option>
+                <option correct="false">Uma afirmação sem prova</option>
+            </question>
+            <question>
+                <text>Qual o modo verbal que expressa incerteza ou desejo?</text>
+                <option correct="false">Indicativo</option>
+                <option correct="true">Subjuntivo</option>
+                <option correct="false">Imperativo</option>
+                <option correct="false">Gerúndio</option>
+            </question>
+            <question>
+                <text>A retórica estuda a arte de:</text>
+                <option correct="true">Persuadir e convencer</option>
+                <option correct="false">Apenas escrever bem</option>
+                <option correct="false">Apenas falar em público</option>
+                <option correct="false">Decorar textos</option>
+            </question>
+            <question>
+                <text>O que é anáfora?</text>
+                <option correct="false">Uso de palavras antigas</option>
+                <option correct="true">Repetição de palavras no início de frases</option>
+                <option correct="false">Inversão da ordem gramatical</option>
+                <option correct="false">Exagero de uma ideia</option>
+            </question>
+            <question>
+                <text>Qual a principal característica da lógica formal?</text>
+                <option correct="false">Lidar com a verdade das proposições</option>
+                <option correct="true">Lidar com a validade dos argumentos</option>
+                <option correct="false">Estudar as emoções humanas</option>
+                <option correct="false">Analisar a beleza da linguagem</option>
+            </question>
+            <question>
+                <text>Qual o uso da vírgula em 'João, venha cá!'?</text>
+                <option correct="false">Separar orações</option>
+                <option correct="true">Isolar vocativo</option>
+                <option correct="false">Indicar pausa dramática</option>
+                <option correct="false">Separar aposto</option>
+            </question>
+            <question>
+                <text>O que é uma falácia de causa falsa?</text>
+                <option correct="true">Assumir que A causou B só porque B veio depois de A</option>
+                <option correct="false">Argumento contra a pessoa</option>
+                <option correct="false">Generalização sem dados</option>
+                <option correct="false">Apelo à ignorância</option>
+            </question>
+            <question>
+                <text>Qual o nome do pronome que indica posse?</text>
+                <option correct="true">Possessivo</option>
+                <option correct="false">Demonstrativo</option>
+                <option correct="false">Indefinido</option>
+                <option correct="false">Relativo</option>
+            </question>
+        </level>
+        <level name="level3">
+            <question>
+                <text>O que diferencia a gramática normativa da descritiva?</text>
+                <option correct="true">A normativa dita regras, a descritiva observa o uso</option>
+                <option correct="false">A normativa é para escolas, a descritiva para cientistas</option>
+                <option correct="false">Uma é antiga, outra é moderna</option>
+                <option correct="false">Não há diferença significativa</option>
+            </question>
+            <question>
+                <text>Qual o recurso retórico que consiste em repetir a mesma consoante?</text>
+                <option correct="true">Aliteração</option>
+                <option correct="false">Assonância</option>
+                <option correct="false">Onomatopeia</option>
+                <option correct="false">Paradoxo</option>
+            </question>
+            <question>
+                <text>O que é uma premissa maior em um silogismo?</text>
+                <option correct="false">A conclusão do argumento</option>
+                <option correct="true">A afirmação mais geral</option>
+                <option correct="false">A afirmação específica</option>
+                <option correct="false">Um fato isolado</option>
+            </question>
+            <question>
+                <text>Qual a figura de linguagem presente em "choveu canivetes"?</text>
+                <option correct="false">Metáfora</option>
+                <option correct="true">Hipérbole</option>
+                <option correct="false">Antítese</option>
+                <option correct="false">Paradoxo</option>
+            </question>
+            <question>
+                <text>A conjunção 'embora' é classificada como:</text>
+                <option correct="true">Concessiva</option>
+                <option correct="false">Aditiva</option>
+                <option correct="false">Explicativa</option>
+                <option correct="false">Conclusiva</option>
+            </question>
+            <question>
+                <text>Qual a parte da retórica que lida com a disposição dos argumentos?</text>
+                <option correct="true">Dispositio</option>
+                <option correct="false">Inventio</option>
+                <option correct="false">Elocutio</option>
+                <option correct="false">Memoria</option>
+            </question>
+            <question>
+                <text>O que é um adjetivo pátrio?</text>
+                <option correct="true">Indica origem ou nacionalidade</option>
+                <option correct="false">Indica posse</option>
+                <option correct="false">Indica qualidade moral</option>
+                <option correct="false">Indica quantidade</option>
+            </question>
+            <question>
+                <text>No raciocínio dedutivo, se as premissas são verdadeiras, a conclusão é:</text>
+                <option correct="true">Necessariamente verdadeira</option>
+                <option correct="false">Provavelmente verdadeira</option>
+                <option correct="false">Falsa</option>
+                <option correct="false">Irrelevante</option>
+            </question>
+        </level>
+    </category>
+
+    <category name="quadrivium">
+        <level name="level1">
+            <question>
+                <text>Quanto é 5 multiplicado por 6?</text>
+                <option correct="true">30</option>
+                <option correct="false">11</option>
+                <option correct="false">25</option>
+                <option correct="false">35</option>
+            </question>
+            <question>
+                <text>Quantos lados tem um triângulo?</text>
+                <option correct="false">Quatro</option>
+                <option correct="true">Três</option>
+                <option correct="false">Cinco</option>
+                <option correct="false">Seis</option>
+            </question>
+            <question>
+                <text>Qual planeta é conhecido como 'Planeta Vermelho'?</text>
+                <option correct="false">Vênus</option>
+                <option correct="true">Marte</option>
+                <option correct="false">Júpiter</option>
+                <option correct="false">Saturno</option>
+            </question>
+            <question>
+                <text>Qual a forma de medir ângulos na geometria?</text>
+                <option correct="false">Metros</option>
+                <option correct="true">Graus</option>
+                <option correct="false">Litros</option>
+                <option correct="false">Quilogramas</option>
+            </question>
+            <question>
+                <text>Qual instrumento musical tem teclas e cordas marteladas?</text>
+                <option correct="false">Guitarra</option>
+                <option correct="true">Piano</option>
+                <option correct="false">Flauta</option>
+                <option correct="false">Bateria</option>
+            </question>
+            <question>
+                <text>Qual o nome da linha imaginária que divide a Terra em dois hemisférios?</text>
+                <option correct="false">Trópico de Câncer</option>
+                <option correct="true">Equador</option>
+                <option correct="false">Círculo Polar Ártico</option>
+                <option correct="false">Meridiano de Greenwich</option>
+            </question>
+            <question>
+                <text>Quantas notas musicais básicas existem?</text>
+                <option correct="false">5</option>
+                <option correct="true">7</option>
+                <option correct="false">8</option>
+                <option correct="false">12</option>
+            </question>
+            <question>
+                <text>Qual a sequência numérica onde cada número é a soma dos dois anteriores (ex: 0, 1, 1, 2, 3...)?</text>
+                <option correct="true">Fibonacci</option>
+                <option correct="false">Aritmética</option>
+                <option correct="false">Geométrica</option>
+                <option correct="false">Primo</option>
+            </question>
+        </level>
+        <level name="level2">
+            <question>
+                <text>Qual a raiz quadrada de 81?</text>
+                <option correct="false">8</option>
+                <option correct="true">9</option>
+                <option correct="false">10</option>
+                <option correct="false">7</option>
+            </question>
+            <question>
+                <text>Um círculo tem quantos graus?</text>
+                <option correct="false">90</option>
+                <option correct="true">360</option>
+                <option correct="false">180</option>
+                <option correct="false">270</option>
+            </question>
+            <question>
+                <text>Qual o nome da galáxia onde vivemos?</text>
+                <option correct="true">Via Láctea</option>
+                <option correct="false">Andrômeda</option>
+                <option correct="false">Olho Negro</option>
+                <option correct="false">Triângulo</option>
+            </question>
+            <question>
+                <text>O que é um número primo?</text>
+                <option correct="false">Um número ímpar</option>
+                <option correct="true">Um número divisível apenas por 1 e por ele mesmo</option>
+                <option correct="false">Um número que termina em 0 ou 5</option>
+                <option correct="false">Um número par</option>
+            </question>
+            <question>
+                <text>Qual o tipo de escala musical mais comum na música ocidental?</text>
+                <option correct="true">Diatônica</option>
+                <option correct="false">Pentatônica</option>
+                <option correct="false">Cromática</option>
+                <option correct="false">Blues</option>
+            </question>
+            <question>
+                <text>Qual a distância média da Terra ao Sol (aproximadamente)?</text>
+                <option correct="false">100 milhões de km</option>
+                <option correct="true">150 milhões de km</option>
+                <option correct="false">200 milhões de km</option>
+                <option correct="false">50 milhões de km</option>
+            </question>
+            <question>
+                <text>Qual o teorema que relaciona os lados de um triângulo retângulo?</text>
+                <option correct="false">Teorema de Tales</option>
+                <option correct="true">Teorema de Pitágoras</option>
+                <option correct="false">Teorema de Fermat</option>
+                <option correct="false">Teorema de Euler</option>
+            </question>
+            <question>
+                <text>O que é a gravidade no contexto da astronomia?</text>
+                <option correct="true">Força que atrai objetos com massa</option>
+                <option correct="false">Luz emitida pelas estrelas</option>
+                <option correct="false">Movimento de rotação dos planetas</option>
+                <option correct="false">A composição química dos planetas</option>
+            </question>
+        </level>
+        <level name="level3">
+            <question>
+                <text>O que é um algoritmo na matemática?</text>
+                <option correct="true">Sequência finita de instruções para resolver um problema</option>
+                <option correct="false">Um tipo de equação complexa</option>
+                <option correct="false">Uma prova geométrica</option>
+                <option correct="false">Um conjunto de números aleatórios</option>
+            </question>
+            <question>
+                <text>Qual o nome do sólido geométrico com seis faces quadradas iguais?</text>
+                <option correct="false">Pirâmide</option>
+                <option correct="true">Cubo</option>
+                <option correct="false">Cilindro</option>
+                <option correct="false">Esfera</option>
+            </question>
+            <question>
+                <text>O que é um buraco negro?</text>
+                <option correct="true">Região do espaço-tempo com gravidade tão forte que nada escapa</option>
+                <option correct="false">Uma estrela que apagou completamente</option>
+                <option correct="false">Um planeta que se desintegrou</option>
+                <option correct="false">Um tipo de nebulosa</option>
+            </question>
+            <question>
+                <text>Qual o nome da unidade de medida de frequência em música?</text>
+                <option correct="false">Decibel</option>
+                <option correct="true">Hertz</option>
+                <option correct="false">Watt</option>
+                <option correct="false">Joule</option>
+            </question>
+            <question>
+                <text>O que estuda a cosmologia?</text>
+                <option correct="false">A composição de planetas</option>
+                <option correct="true">A origem e evolução do universo</option>
+                <option correct="false">A vida extraterrestre</option>
+                <option correct="false">O movimento dos astros</option>
+            </question>
+            <question>
+                <text>Se um relógio marca 3:00, qual o ângulo entre os ponteiros das horas e minutos?</text>
+                <option correct="false">30 graus</option>
+                <option correct="true">90 graus</option>
+                <option correct="false">180 graus</option>
+                <option correct="false">60 graus</option>
+            </question>
+            <question>
+                <text>Qual o processo de transformar um número em uma forma mais simples, mas equivalente?</text>
+                <option correct="true">Simplificação</option>
+                <option correct="false">Multiplicação</option>
+                <option correct="false">Fatoração</option>
+                <option correct="false">Divisão</option>
+            </question>
+            <question>
+                <text>Qual o nome da força que mantém os planetas em órbita ao redor do Sol?</text>
+                <option correct="false">Força eletromagnética</option>
+                <option correct="true">Força gravitacional</option>
+                <option correct="false">Força nuclear</option>
+                <option correct="false">Força centrífuga</option>
+            </question>
+        </level>
+    </category>
+
+    <category name="bible">
+        <level name="level1">
+            <question>
+                <text>Quem foi o primeiro homem criado por Deus?</text>
+                <option correct="false">Noé</option>
+                <option correct="true">Adão</option>
+                <option correct="false">Abraão</option>
+                <option correct="false">Moisés</option>
+            </question>
+            <question>
+                <text>Quantos dias levou a criação do mundo segundo Gênesis?</text>
+                <option correct="false">5</option>
+                <option correct="true">6 (Deus descansou no 7º)</option>
+                <option correct="false">7</option>
+                <option correct="false">10</option>
+            </question>
+            <question>
+                <text>Qual o livro da Bíblia que conta a história de Moisés libertando os hebreus?</text>
+                <option correct="true">Êxodo</option>
+                <option correct="false">Gênesis</option>
+                <option correct="false">Levítico</option>
+                <option correct="false">Números</option>
+            </question>
+            <question>
+                <text>Quem foi o rei de Israel que escreveu muitos Salmos?</text>
+                <option correct="false">Salomão</option>
+                <option correct="true">Davi</option>
+                <option correct="false">Saul</option>
+                <option correct="false">Ezequias</option>
+            </question>
+            <question>
+                <text>Qual animal falou com Balaão?</text>
+                <option correct="false">Cão</option>
+                <option correct="true">Jumenta</option>
+                <option correct="false">Serpente</option>
+                <option correct="false">Leão</option>
+            </question>
+            <question>
+                <text>Quantos foram os discípulos mais próximos de Jesus (apóstolos)?</text>
+                <option correct="false">7</option>
+                <option correct="true">12</option>
+                <option correct="false">10</option>
+                <option correct="false">15</option>
+            </question>
+            <question>
+                <text>Quem traiu Jesus por 30 moedas de prata?</text>
+                <option correct="true">Judas Iscariotes</option>
+                <option correct="false">Pedro</option>
+                <option correct="false">João</option>
+                <option correct="false">Tomé</option>
+            </question>
+            <question>
+                <text>Qual o nome do jardim onde Jesus orou antes de ser preso?</text>
+                <option correct="false">Éden</option>
+                <option correct="true">Getsêmani</option>
+                <option correct="false">Jardim Secreto</option>
+                <option correct="false">Nenhum desses</option>
+            </question>
+        </level>
+        <level name="level2">
+            <question>
+                <text>Quem foi o profeta que foi engolido por um grande peixe?</text>
+                <option correct="false">Elias</option>
+                <option correct="true">Jonas</option>
+                <option correct="false">Jeremias</option>
+                <option correct="false">Isaías</option>
+            </question>
+            <question>
+                <text>Qual o mandamento de Jesus que resume a lei?</text>
+                <option correct="true">Amar a Deus e ao próximo</option>
+                <option correct="false">Não matarás</option>
+                <option correct="false">Honra teu pai e tua mãe</option>
+                <option correct="false">Não roubarás</option>
+            </question>
+            <question>
+                <text>Qual a última praga que atingiu o Egito antes da libertação dos hebreus?</text>
+                <option correct="false">Praga dos gafanhotos</option>
+                <option correct="true">Morte dos primogênitos</option>
+                <option correct="false">Água em sangue</option>
+                <option correct="false">Trevas</option>
+            </question>
+            <question>
+                <text>Qual o primeiro livro do Novo Testamento?</text>
+                <option correct="false">Atos</option>
+                <option correct="true">Mateus</option>
+                <option correct="false">João</option>
+                <option correct="false">Romanos</option>
+            </question>
+            <question>
+                <text>Quem é conhecido como o 'Pai da Fé'?</text>
+                <option correct="false">Moisés</option>
+                <option correct="true">Abraão</option>
+                <option correct="false">José</option>
+                <option correct="false">Davi</option>
+            </question>
+            <question>
+                <text>Qual o rio onde Jesus foi batizado por João Batista?</text>
+                <option correct="false">Rio Nilo</option>
+                <option correct="true">Rio Jordão</option>
+                <option correct="false">Rio Eufrates</option>
+                <option correct="false">Rio Tigre</option>
+            </question>
+            <question>
+                <text>Qual a montanha onde Moisés recebeu os Dez Mandamentos?</text>
+                <option correct="false">Monte das Oliveiras</option>
+                <option correct="true">Monte Sinai</option>
+                <option correct="false">Monte Hermon</option>
+                <option correct="false">Monte Carmelo</option>
+            </question>
+            <question>
+                <text>Quem foi o homem mais forte da Bíblia, que teve seu cabelo cortado por Dalila?</text>
+                <option correct="true">Sansão</option>
+                <option correct="false">Davi</option>
+                <option correct="false">Golias</option>
+                <option correct="false">Saul</option>
+            </question>
+        </level>
+        <level name="level3">
+            <question>
+                <text>Quantos livros tem a Bíblia Protestante?</text>
+                <option correct="true">66</option>
+                <option correct="false">73</option>
+                <option correct="false">39</option>
+                <option correct="false">27</option>
+            </question>
+            <question>
+                <text>Qual o nome da cidade onde Jesus nasceu?</text>
+                <option correct="false">Nazaré</option>
+                <option correct="true">Belém</option>
+                <option correct="false">Jerusalém</option>
+                <option correct="false">Cafarnaum</option>
+            </question>
+            <question>
+                <text>Quem foi o primeiro mártir cristão?</text>
+                <option correct="false">Pedro</option>
+                <option correct="true">Estêvão</option>
+                <option correct="false">Tiago</option>
+                <option correct="false">Paulo</option>
+            </question>
+            <question>
+                <text>Qual o profeta que anunciou a vinda de Jesus como 'Voz do que clama no deserto'?</text>
+                <option correct="true">João Batista</option>
+                <option correct="false">Isaías</option>
+                <option correct="false">Elias</option>
+                <option correct="false">Jeremias</option>
+            </question>
+            <question>
+                <text>Qual o nome do discípulo que duvidou da ressurreição de Jesus?</text>
+                <option correct="false">Pedro</option>
+                <option correct="true">Tomé</option>
+                <option correct="false">Filipe</option>
+                <option correct="false">André</option>
+            </question>
+            <question>
+                <text>Qual o último livro da Bíblia?</text>
+                <option correct="false">Atos dos Apóstolos</option>
+                <option correct="true">Apocalipse</option>
+                <option correct="false">Judas</option>
+                <option correct="false">Malaquias</option>
+            </question>
+            <question>
+                <text>Qual o tema principal do livro de Levítico?</text>
+                <option correct="false">História dos patriarcas</option>
+                <option correct="true">Leis e rituais de adoração</option>
+                <option correct="false">Profecias sobre o fim dos tempos</option>
+                <option correct="false">Poesia e sabedoria</option>
+            </question>
+            <question>
+                <text>Quem foi o governador romano que condenou Jesus à crucificação?</text>
+                <option correct="true">Pôncio Pilatos</option>
+                <option correct="false">Herodes Antipas</option>
+                <option correct="false">Caifás</option>
+                <option correct="false">Tibério César</option>
+            </question>
+        </level>
+    </category>
+
+    <category name="generalCulture">
+        <level name="level1">
+            <question>
+                <text>Qual o país mais populoso do mundo?</text>
+                <option correct="true">Índia</option>
+                <option correct="false">China</option>
+                <option correct="false">Estados Unidos</option>
+                <option correct="false">Indonésia</option>
+            </question>
+            <question>
+                <text>Qual o maior deserto do mundo?</text>
+                <option correct="false">Saara</option>
+                <option correct="true">Antártico</option>
+                <option correct="false">Arábia</option>
+                <option correct="false">Gobi</option>
+            </question>
+            <question>
+                <text>Quem pintou a Mona Lisa?</text>
+                <option correct="false">Vincent van Gogh</option>
+                <option correct="true">Leonardo da Vinci</option>
+                <option correct="false">Pablo Picasso</option>
+                <option correct="false">Michelangelo</option>
+            </question>
+            <question>
+                <text>Qual o nome do maior rio do mundo em volume de água?</text>
+                <option correct="false">Nilo</option>
+                <option correct="true">Amazonas</option>
+                <option correct="false">Mississipi</option>
+                <option correct="false">Yangtzé</option>
+            </question>
+            <question>
+                <text>Em que continente fica o Monte Everest?</text>
+                <option correct="false">África</option>
+                <option correct="true">Ásia</option>
+                <option correct="false">América do Sul</option>
+                <option correct="false">Europa</option>
+            </question>
+            <question>
+                <text>Qual o metal mais abundante na crosta terrestre?</text>
+                <option correct="false">Ferro</option>
+                <option correct="true">Alumínio</option>
+                <option correct="false">Cobre</option>
+                <option correct="false">Ouro</option>
+            </question>
+            <question>
+                <text>Quem escreveu 'Dom Quixote'?</text>
+                <option correct="true">Miguel de Cervantes</option>
+                <option correct="false">William Shakespeare</option>
+                <option correct="false">Victor Hugo</option>
+                <option correct="false">Charles Dickens</option>
+            </question>
+            <question>
+                <text>Qual o país com mais ilhas no mundo?</text>
+                <option correct="true">Suécia</option>
+                <option correct="false">Indonésia</option>
+                <option correct="false">Filipinas</option>
+                <option correct="false">Japão</option>
+            </question>
+        </level>
+        <level name="level2">
+            <question>
+                <text>Quem foi o primeiro presidente dos Estados Unidos?</text>
+                <option correct="false">Abraham Lincoln</option>
+                <option correct="true">George Washington</option>
+                <option correct="false">Thomas Jefferson</option>
+                <option correct="false">John F. Kennedy</option>
+            </question>
+            <question>
+                <text>Qual a capital da França?</text>
+                <option correct="true">Paris</option>
+                <option correct="false">Roma</option>
+                <option correct="false">Berlim</option>
+                <option correct="false">Londres</option>
+            </question>
+            <question>
+                <text>Qual o nome do maior oceano do mundo?</text>
+                <option correct="false">Atlântico</option>
+                <option correct="true">Pacífico</option>
+                <option correct="false">Índico</option>
+                <option correct="false">Ártico</option>
+            </question>
+            <question>
+                <text>Em que ano começou a Primeira Guerra Mundial?</text>
+                <option correct="false">1905</option>
+                <option correct="true">1914</option>
+                <option correct="false">1918</option>
+                <option correct="false">1939</option>
+            </question>
+            <question>
+                <text>Qual o nome da estátua famosa na cidade do Rio de Janeiro?</text>
+                <option correct="true">Cristo Redentor</option>
+                <option correct="false">Estátua da Liberdade</option>
+                <option correct="false">Torre Eiffel</option>
+                <option correct="false">Coliseu</option>
+            </question>
+            <question>
+                <text>Qual o país de origem do Sushi?</text>
+                <option correct="false">China</option>
+                <option correct="true">Japão</option>
+                <option correct="false">Coreia do Sul</option>
+                <option correct="false">Vietnã</option>
+            </question>
+            <question>
+                <text>Qual o nome do processo pelo qual as plantas produzem seu próprio alimento?</text>
+                <option correct="true">Fotossíntese</option>
+                <option correct="false">Respiração</option>
+                <option correct="false">Transpiração</option>
+                <option correct="false">Decomposição</option>
+            </question>
+            <question>
+                <text>Qual o país que tem a maior extensão territorial do mundo?</text>
+                <option correct="false">Canadá</option>
+                <option correct="true">Rússia</option>
+                <option correct="false">China</option>
+                <option correct="false">Estados Unidos</option>
+            </question>
+        </level>
+        <level name="level3">
+            <question>
+                <text>Qual o evento histórico que marcou o fim da Idade Média?</text>
+                <option correct="false">Revolução Francesa</option>
+                <option correct="true">Queda de Constantinopla</option>
+                <option correct="false">Descoberta da América</option>
+                <option correct="false">Reforma Protestante</option>
+            </question>
+            <question>
+                <text>Qual o nome do instrumento que mede terremotos?</text>
+                <option correct="false">Barômetro</option>
+                <option correct="true">Sismógrafo</option>
+                <option correct="false">Anemômetro</option>
+                <option correct="false">Termômetro</option>
+            </question>
+            <question>
+                <text>Qual o oceano que banha a costa leste da África?</text>
+                <option correct="false">Atlântico</option>
+                <option correct="true">Índico</option>
+                <option correct="false">Pacífico</option>
+                <option correct="false">Antártico</option>
+            </question>
+            <question>
+                <text>Quem foi o líder do movimento pelos direitos civis nos EUA?</text>
+                <option correct="false">Malcolm X</option>
+                <option correct="true">Martin Luther King Jr.</option>
+                <option correct="false">Rosa Parks</option>
+                <option correct="false">Nelson Mandela</option>
+            </question>
+            <question>
+                <text>Qual o nome do famoso arquiteto que projetou a Catedral de Brasília?</text>
+                <option correct="true">Oscar Niemeyer</option>
+                <option correct="false">Frank Lloyd Wright</option>
+                <option correct="false">Antoni Gaudí</option>
+                <option correct="false">Zaha Hadid</option>
+            </question>
+            <question>
+                <text>Qual o país conhecido como a "Terra do Sol Nascente"?</text>
+                <option correct="false">China</option>
+                <option correct="true">Japão</option>
+                <option correct="false">Coreia do Sul</option>
+                <option correct="false">Vietnã</option>
+            </question>
+            <question>
+                <text>Qual o gás responsável pela cor azul do céu?</text>
+                <option correct="false">Oxigênio</option>
+                <option correct="true">Nitrogênio</option>
+                <option correct="false">Dióxido de Carbono</option>
+                <option correct="false">Argônio</option>
+            </question>
+            <question>
+                <text>Em que ano o homem pisou na Lua pela primeira vez?</text>
+                <option correct="false">1965</option>
+                <option correct="true">1969</option>
+                <option correct="false">1973</option>
+                <option correct="false">1957</option>
+            </question>
+        </level>
+    </category>
+
+    <category name="mwangole">
+        <level name="level1">
+            <question>
+                <text>Qual é a moeda oficial de Angola?</text>
+                <option correct="false">Dólar</option>
+                <option correct="true">Kwanza</option>
+                <option correct="false">Euro</option>
+                <option correct="false">Metical</option>
+            </question>
+            <question>
+                <text>Quem foi o primeiro Presidente da República de Angola?</text>
+                <option correct="false">Jair Bolsonaro</option>
+                <option correct="true">Agostinho Neto</option>
+                <option correct="false">José Eduardo dos Santos</option>
+                <option correct="false">João Lourenço</option>
+            </question>
+            <question>
+                <text>Qual o dia da Independência de Angola?</text>
+                <option correct="false">4 de Fevereiro</option>
+                <option correct="true">11 de Novembro</option>
+                <option correct="false">25 de Abril</option>
+                <option correct="false">17 de Setembro</option>
+            </question>
+            <question>
+                <text>Qual o nome do maior rio que atravessa Angola?</text>
+                <option correct="false">Zaire (Congo)</option>
+                <option correct="true">Kwanza</option>
+                <option correct="false">Okavango</option>
+                <option correct="false">Kunene</option>
+            </question>
+            <question>
+                <text>Qual a província angolana conhecida pela sua costa e praias paradisíacas?</text>
+                <option correct="false">Huambo</option>
+                <option correct="true">Benguela</option>
+                <option correct="false">Uíge</option>
+                <option correct="false">Lunda Sul</option>
+            </question>
+            <question>
+                <text>Qual o nome da rainha angolana que resistiu bravamente à colonização portuguesa?</text>
+                <option correct="true">Njinga Mbandi</option>
+                <option correct="false">Ana de Sousa</option>
+                <option correct="false">Kassanje</option>
+                <option correct="false">Muana Pwo</option>
+            </question>
+            <question>
+                <text>Qual o principal produto de exportação de Angola?</text>
+                <option correct="true">Petróleo</option>
+                <option correct="false">Café</option>
+                <option correct="false">Diamantes</option>
+                <option correct="false">Peixe</option>
+            </question>
+            <question>
+                <text>Qual o nome do grupo étnico predominante no norte de Angola?</text>
+                <option correct="false">Ovimbundu</option>
+                <option correct="true">Bakongo</option>
+                <option correct="false">Chokwe</option>
+                <option correct="false">Ganguela</option>
+            </question>
+        </level>
+        <level name="level2">
+            <question>
+                <text>Em que ano Angola se tornou independente?</text>
+                <option correct="false">1961</option>
+                <option correct="true">1975</option>
+                <option correct="false">1985</option>
+                <option correct="false">2002</option>
+            </question>
+            <question>
+                <text>Qual o nome do lago mais extenso de Angola, na província de Lunda Norte?</text>
+                <option correct="true">Lago Dilolo</option>
+                <option correct="false">Lagoa do Caril</option>
+                <option correct="false">Lago Calueque</option>
+                <option correct="false">Lago Cazombo</option>
+            </question>
+            <question>
+                <text>Qual o nome da famosa fortaleza histórica localizada em Luanda?</text>
+                <option correct="false">Fortaleza de São Miguel</option>
+                <option correct="true">Fortaleza de São Miguel</option>
+                <option correct="false">Fortaleza de São Jorge</option>
+                <option correct="false">Fortaleza de Santa Cruz</option>
+            </question>
+            <question>
+                <text>Qual o nome do Tratado que definiu as fronteiras coloniais de Angola?</text>
+                <option correct="false">Tratado de Tordesilhas</option>
+                <option correct="true">Conferência de Berlim</option>
+                <option correct="false">Tratado de Alvor</option>
+                <option correct="false">Tratado de Versalhes</option>
+            </question>
+            <question>
+                <text>Qual o nome do pico mais alto de Angola?</text>
+                <option correct="false">Monte Moco</option>
+                <option correct="true">Monte Moco</option>
+                <option correct="false">Serra da Leba</option>
+                <option correct="false">Morro do Cristo</option>
+            </question>
+            <question>
+                <text>Qual a província angolana conhecida como "Terra do Boi"?</text>
+                <option correct="true">Huíla</option>
+                <option correct="false">Cunene</option>
+                <option correct="false">Benguela</option>
+                <option correct="false">Namibe</option>
+            </question>
+            <question>
+                <text>Qual a barragem hidroelétrica mais importante de Angola?</text>
+                <option correct="false">Barragem de Capanda</option>
+                <option correct="true">Barragem de Laúca</option>
+                <option correct="false">Barragem de Cambambe</option>
+                <option correct="false">Barragem de Caculo Cabaça</option>
+            </question>
+            <question>
+                <text>Qual o nome da cidade portuária que é o segundo maior centro urbano de Angola?</text>
+                <option correct="false">Benguela</option>
+                <option correct="true">Lobito</option>
+                <option correct="false">Huambo</option>
+                <option correct="false">Cabinda</option>
+            </question>
+        </level>
+        <level name="level3">
+            <question>
+                <text>Quem foi o primeiro chefe de estado da UNITA?</text>
+                <option correct="false">Isaías Samakuva</option>
+                <option correct="true">Jonas Savimbi</option>
+                <option correct="false">Adalberto Costa Júnior</option>
+                <option correct="false">Paulo Lukamba Gato</option>
+            </question>
+            <question>
+                <text>Qual o nome do ponto mais ocidental do continente africano localizado em Angola?</text>
+                <option correct="false">Cabo da Boa Esperança</option>
+                <option correct="true">Ponta da Moita Seca (Foz do Rio Congo)</option>
+                <option correct="false">Cabo Negro</option>
+                <option correct="false">Ilha do Mussulo</option>
+            </question>
+            <question>
+                <text>Qual o nome do deserto que se estende pelo sul de Angola e Namíbia?</text>
+                <option correct="false">Saara</option>
+                <option correct="true">Namibe</option>
+                <option correct="false">Kalahari</option>
+                <option correct="false">Ogaden</option>
+            </question>
+            <question>
+                <text>Qual a etnia angolana famosa pela Welwitschia Mirabilis?</text>
+                <option correct="true">Mucubal</option>
+                <option correct="false">Herero</option>
+                <option correct="false">Cuanhama</option>
+                <option correct="false">Nyaneka</option>
+            </question>
+            <question>
+                <text>Qual a área protegida de Angola que abriga as Quedas de Kalandula?</text>
+                <option correct="false">Parque Nacional da Quiçama</option>
+                <option correct="true">Não está em área protegida, mas no rio Lucala</option>
+                <option correct="false">Parque Nacional da Cangandala</option>
+                <option correct="false">Reserva Natural Integral do Luando</option>
+            </question>
+            <question>
+                <text>Qual o nome da província de Angola que tem a maior reserva de gás natural?</text>
+                <option correct="true">Cabinda</option>
+                <option correct="false">Zaire</option>
+                <option correct="false">Bengo</option>
+                <option correct="false">Cuanza Sul</option>
+            </question>
+            <question>
+                <text>O que significa 'Mwangolé' no contexto angolano?</text>
+                <option correct="true">Pessoa de Angola, Angolano</option>
+                <option correct="false">Pessoa sábia</option>
+                <option correct="false">Guerreiro</option>
+                <option correct="false">Cidadão do mundo</option>
+            </question>
+            <question>
+                <text>Qual o nome da operação militar que marcou o fim da guerra civil em Angola?</text>
+                <option correct="false">Operação Carlota</option>
+                <option correct="true">Operação Restauração</option>
+                <option correct="false">Operação Save</option>
+                <option correct="false">Operação Vitoria</option>
+            </question>
+        </level>
+    </category>
+
+    <category name="solomonMode">
+        <level name="level1">
+            <question>
+                <text>No contexto bíblico, qual característica é frequentemente associada a Salomão?</text>
+                <option correct="false">Força física</option>
+                <option correct="true">Sabedoria</option>
+                <option correct="false">Riqueza</option>
+                <option correct="false">Coragem em batalha</option>
+            </question>
+            <question>
+                <text>Qual foi a famosa decisão de Salomão sobre dois bebês e suas mães?</text>
+                <option correct="true">Dividir o bebê ao meio</option>
+                <option correct="false">Dar o bebê à mulher mais rica</option>
+                <option correct="false">Fazer um sorteio</option>
+                <option correct="false">Consultar um profeta</option>
+            </question>
+            <question>
+                <text>Qual o nome do livro bíblico tradicionalmente atribuído a Salomão, focado em provérbios?</text>
+                <option correct="false">Cântico dos Cânticos</option>
+                <option correct="true">Provérbios</option>
+                <option correct="false">Eclesiastes</option>
+                <option correct="false">Sabedoria de Salomão</option>
+            </question>
+            <question>
+                <text>O que Salomão pediu a Deus, segundo 1 Reis 3:9?</text>
+                <option correct="false">Longa vida</option>
+                <option correct="true">Coração entendido para julgar</option>
+                <option correct="false">Riquezas incalculáveis</option>
+                <option correct="false">Vitória sobre os inimigos</option>
+            </question>
+            <question>
+                <text>Qual a rainha que visitou Salomão para testar sua sabedoria?</text>
+                <option correct="false">Rainha Ester</option>
+                <option correct="true">Rainha de Sabá</option>
+                <option correct="false">Rainha Jezabel</option>
+                <option correct="false">Rainha Vasti</option>
+            </question>
+            <question>
+                <text>Qual o grande projeto de construção que Salomão supervisionou em Jerusalém?</text>
+                <option correct="true">O Templo</option>
+                <option correct="false">Um palácio gigante</option>
+                <option correct="false">Muros da cidade</option>
+                <option correct="false">Um sistema de aquedutos</option>
+            </question>
+            <question>
+                <text>Quantas esposas e concubinas Salomão teria tido, segundo a Bíblia?</text>
+                <option correct="false">100</option>
+                <option correct="true">Mil (700 esposas e 300 concubinas)</option>
+                <option correct="false">10</option>
+                <option correct="false">50</option>
+            </question>
+            <question>
+                <text>O que o livro de Eclesiastes (atribuído a Salomão) conclui sobre a vida?</text>
+                <option correct="false">A vida é sempre justa e feliz</option>
+                <option correct="true">Tudo é vaidade e correr atrás do vento</option>
+                <option correct="false">O trabalho duro é a chave para a felicidade</option>
+                <option correct="false">A sabedoria é a única coisa que importa</option>
+            </question>
+        </level>
+        <level name="level2">
+            <question>
+                <text>Em qual dinastia Salomão reinou em Israel?</text>
+                <option correct="false">Dinastia de Saul</option>
+                <option correct="true">Dinastia de Davi</option>
+                <option correct="false">Dinastia dos Juízes</option>
+                <option correct="false">Dinastia Omri</option>
+            </question>
+            <question>
+                <text>Qual o nome do filho de Salomão que sucedeu ao trono, levando à divisão do reino?</text>
+                <option correct="true">Roboão</option>
+                <option correct="false">Jeroboão</option>
+                <option correct="false">Absalão</option>
+                <option correct="false">Adonias</option>
+            </question>
+            <question>
+                <text>Qual a principal falha de Salomão, segundo a Bíblia, que o afastou de Deus?</text>
+                <option correct="false">Sua ganância por ouro</option>
+                <option correct="true">Seu grande número de esposas estrangeiras e idolatria</option>
+                <option correct="false">Sua crueldade com o povo</option>
+                <option correct="false">Sua falta de sabedoria</option>
+            </question>
+            <question>
+                <text>Qual o nome do profeta que ungiu Salomão como rei, após o falecimento de Davi?</text>
+                <option correct="false">Samuel</option>
+                <option correct="true">Natã</option>
+                <option correct="false">Elias</option>
+                <option correct="false">Isaías</option>
+            </question>
+            <question>
+                <text>Qual a localização geográfica do reino de Sabá, segundo a maioria dos estudiosos?</text>
+                <option correct="false">Egito</option>
+                <option correct="true">Península Arábica (Iêmen)</option>
+                <option correct="false">Etiópia</option>
+                <option correct="false">Síria</option>
+            </question>
+            <question>
+                <text>Quanto tempo levou a construção do Templo de Salomão?</text>
+                <option correct="true">7 anos</option>
+                <option correct="false">3 anos</option>
+                <option correct="false">10 anos</option>
+                <option correct="false">40 anos</option>
+            </question>
+            <question>
+                <text>Qual a madeira preciosa usada na construção do Templo de Salomão?</text>
+                <option correct="true">Cedro do Líbano</option>
+                <option correct="false">Carvalho</option>
+                <option correct="false">Pinheiro</option>
+                <option correct="false">Acácia</option>
+            </question>
+            <question>
+                <text>O que a Bíblia diz sobre o 'Cântico dos Cânticos' de Salomão?</text>
+                <option correct="false">É um livro de profecias</option>
+                <option correct="true">Um poema lírico sobre o amor</option>
+                <option correct="false">Um registro de batalhas</option>
+                <option correct="false">Um livro de leis</option>
+            </question>
+        </level>
+        <level name="level3">
+            <question>
+                <text>Qual a principal fonte de riqueza que Salomão obteve através do comércio marítimo?</text>
+                <option correct="true">Ouro, prata, marfim e macacos</option>
+                <option correct="false">Especiarias e sedas</option>
+                <option correct="false">Cereais e vinho</option>
+                <option correct="false">Armas e cavalos</option>
+            </question>
+            <question>
+                <text>Que rios marcavam os limites do território de Salomão em seu auge, segundo 1 Reis 4:21?</text>
+                <option correct="false">Tigre e Eufrates</option>
+                <option correct="true">Eufrates e Nilo (rio do Egito)</option>
+                <option correct="false">Jordão e Quison</option>
+                <option correct="false">Orontes e Litani</option>
+            </question>
+            <question>
+                <text>Qual o nome do demônio que, segundo a tradição, Salomão teria aprisionado para construir o Templo?</text>
+                <option correct="false">Belzebu</option>
+                <option correct="true">Asmodeus (na tradição judaica apócrifa)</option>
+                <option correct="false">Lúcifer</option>
+                <option correct="false">Mammon</option>
+            </question>
+            <question>
+                <text>Quantos foram os supervisores de obras de Salomão, segundo a Bíblia?</text>
+                <option correct="false">3.300</option>
+                <option correct="true">3.300 (ou 3.600 em 2 Crônicas)</option>
+                <option correct="false">300</option>
+                <option correct="false">30</option>
+            </question>
+            <question>
+                <text>Qual a área de conhecimento da corte de Salomão que é frequentemente mencionada na Bíblia?</text>
+                <option correct="true">Botânica e Zoologia (conhecia plantas e animais)</option>
+                <option correct="false">Engenharia Militar</option>
+                <option correct="false">Medicina</option>
+                <option correct="false">Agricultura</option>
+            </question>
+            <question>
+                <text>Qual o propósito da 'Casa da Floresta do Líbano', construída por Salomão?</text>
+                <option correct="false">Armazenar alimentos</option>
+                <option correct="true">Armaria e tesouraria</option>
+                <option correct="false">Residência para suas esposas</option>
+                <option correct="false">Um centro de estudos</option>
+            </question>
+            <question>
+                <text>O que a sabedoria de Salomão, descrita na Bíblia, simboliza?</text>
+                <option correct="true">Discernimento divinamente concedido para governar e julgar</option>
+                <option correct="false">Habilidade em batalhas militares</option>
+                <option correct="false">Poder de fazer milagres</option>
+                <option correct="false">Capacidade de prever o futuro</option>
+            </question>
+            <question>
+                <text>Qual o nome do construtor fenício que ajudou Salomão com o Templo?</text>
+                <option correct="true">Hirão de Tiro</option>
+                <option correct="false">Bezalel</option>
+                <option correct="false">Aoliabe</option>
+                <option correct="false">Zípora</option>
+            </question>
+        </level>
+    </category>
+
+</quiz>

@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Estrutura de Dados das Perguntas (Inicialmente vazia, será preenchida pelo XML) ---
     let quizData = {};
-    const defaultXmlPath = 'dados/padrao.xml'; // Caminho para o seu XML padrão
-    const defaultWelcomeInfoXmlPath = 'dados/quemSomos.xml'; // NOVO: Caminho para o XML da tela inicial
+    const defaultXmlPath = 'data/default_questions.xml'; // Caminho para o seu XML padrão
+    const defaultWelcomeInfoXmlPath = 'data/welcome_info.xml'; // Caminho para o XML da tela inicial
 
     // --- 1. Seleção de Elementos das Telas ---
     const welcomeScreen = document.getElementById('welcomeScreen');
@@ -41,17 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Elementos da Tela de Boas-Vindas (Nome e Info Dinâmica) ---
     const participantNameInput = document.getElementById('participantName');
-    const welcomeLogo = document.getElementById('welcomeLogo'); // NOVO
-    const welcomeTitle = document.getElementById('welcomeTitle'); // NOVO
-    const welcomeDescription = document.getElementById('welcomeDescription'); // NOVO
-    const whoAreWeTitle = document.getElementById('whoAreWeTitle'); // NOVO
-    const whoAreWeText = document.getElementById('whoAreWeText'); // NOVO
-    const locationTitle = document.getElementById('locationTitle'); // NOVO
-    const locationText = document.getElementById('locationText'); // NOVO
-    const contactsTitle = document.getElementById('contactsTitle'); // NOVO
-    const contactEmail = document.getElementById('contactEmail'); // NOVO
-    const contactPhone = document.getElementById('contactPhone'); // NOVO
-    const contactSocialMedia = document.getElementById('contactSocialMedia'); // NOVO
+    const welcomeLogo = document.getElementById('welcomeLogo');
+    const welcomeTitle = document.getElementById('welcomeTitle');
+    const welcomeDescription = document.getElementById('welcomeDescription');
+    const whoAreWeTitle = document.getElementById('whoAreWeTitle');
+    const whoAreWeText = document.getElementById('whoAreWeText');
+    const locationTitle = document.getElementById('locationTitle');
+    const locationText = document.getElementById('locationText');
+    const contactsTitle = document.getElementById('contactsTitle');
+    const contactEmail = document.getElementById('contactEmail');
+    const contactPhone = document.getElementById('contactPhone');
+    const contactSocialMedia = document.getElementById('contactSocialMedia');
 
 
     // --- 2. Seleção de Botões de Navegação ---
@@ -720,7 +720,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const xmlDoc = parser.parseFromString(xmlString, "application/xml");
         const parsedData = {};
 
-        // Verifica se há erros de parsing no XML
+        // 1. Verifica erros de parsing XML (sintaxe básica)
         if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
             const error = xmlDoc.getElementsByTagName("parsererror")[0];
             const errorText = error ? error.textContent : "Erro desconhecido no XML.";
@@ -729,63 +729,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const categories = xmlDoc.getElementsByTagName('category');
         if (categories.length === 0) {
-            console.warn("Nenhuma tag <category> encontrada no XML.");
-            return {};
+            throw new Error("Erro: Nenhuma tag <category> encontrada no arquivo XML. A estrutura principal está ausente.");
         }
 
         for (const categoryNode of categories) {
             const categoryName = categoryNode.getAttribute('name');
-            if (!categoryName) {
-                console.warn("Categoria sem atributo 'name' encontrada. Ignorando.");
-                continue;
+            if (!categoryName || categoryName.trim() === '') {
+                throw new Error("Erro de validação: Uma tag <category> não possui o atributo 'name' ou está vazio.");
             }
+            // Opcional: Você pode adicionar um atributo 'displayName' para o nome da categoria na UI
+            // const displayName = categoryNode.getAttribute('displayName') || categoryName.replace('Mode', ' Modo').replace(/([A-Z])/g, ' $1').trim().replace('General Culture', 'Cultura Geral');
             parsedData[categoryName] = {};
 
             const levels = categoryNode.getElementsByTagName('level');
             if (levels.length === 0) {
-                console.warn(`Nenhuma tag <level> encontrada para a categoria ${categoryName}.`);
-                continue;
+                console.warn(`Aviso: Nenhuma tag <level> encontrada para a categoria '${categoryName}'.`);
+                continue; // Permite categoria sem níveis, mas com aviso
             }
 
             for (const levelNode of levels) {
                 const levelName = levelNode.getAttribute('name');
-                if (!levelName) {
-                    console.warn(`Nível sem atributo 'name' encontrado na categoria ${categoryName}. Ignorando.`);
-                    continue;
+                if (!levelName || levelName.trim() === '') {
+                    throw new Error(`Erro de validação: Um nível na categoria '${categoryName}' não possui o atributo 'name' ou está vazio.`);
                 }
                 parsedData[categoryName][levelName] = [];
 
                 const questions = levelNode.getElementsByTagName('question');
                 if (questions.length === 0) {
-                    console.warn(`Nenhuma tag <question> encontrada para o nível ${levelName} da categoria ${categoryName}.`);
-                    continue;
+                    console.warn(`Aviso: Nenhuma tag <question> encontrada para o nível '${levelName}' da categoria '${categoryName}'.`);
+                    continue; // Permite nível sem perguntas, mas com aviso
                 }
 
                 for (const questionNode of questions) {
                     const questionTextNode = questionNode.getElementsByTagName('text')[0];
-                    const questionText = questionTextNode ? questionTextNode.textContent : '';
+                    const questionText = questionTextNode ? questionTextNode.textContent?.trim() : '';
+
                     if (!questionText) {
-                         console.warn(`Pergunta sem texto no nível ${levelName} da categoria ${categoryName}. Ignorando.`);
-                         continue;
+                         throw new Error(`Erro de validação: Uma pergunta no nível '${levelName}' da categoria '${categoryName}' não possui texto.`);
                     }
 
                     const options = [];
                     const optionNodes = questionNode.getElementsByTagName('option');
+                    if (optionNodes.length < 2) { // Validação: Mínimo de 2 opções
+                        throw new Error(`Erro de validação: Pergunta "${questionText}" no nível '${levelName}' precisa de no mínimo 2 opções.`);
+                    }
+
+                    let correctOptionCount = 0;
                     for (const optionNode of optionNodes) {
-                        const optionText = optionNode.textContent;
+                        const optionText = optionNode.textContent?.trim();
+                        if (!optionText) {
+                             throw new Error(`Erro de validação: Uma opção para a pergunta "${questionText}" está vazia.`);
+                        }
                         const isCorrect = optionNode.getAttribute('correct') === 'true';
+                        if (isCorrect) {
+                            correctOptionCount++;
+                        }
                         options.push({ text: optionText, isCorrect: isCorrect });
                     }
 
-                    // Verifica se tem pelo menos uma opção e uma correta
-                    if (options.length > 0 && options.some(opt => opt.isCorrect)) {
-                        parsedData[categoryName][levelName].push({
-                            question: questionText,
-                            options: options
-                        });
-                    } else {
-                        console.warn(`Pergunta incompleta (sem opções ou sem resposta correta) no nível ${levelName} da categoria ${categoryName}.`);
+                    if (correctOptionCount === 0) {
+                        throw new Error(`Erro de validação: Pergunta "${questionText}" no nível '${levelName}' não possui uma resposta correta marcada.`);
                     }
+                    if (correctOptionCount > 1) {
+                        throw new Error(`Erro de validação: Pergunta "${questionText}" no nível '${levelName}' possui mais de uma resposta correta marcada.`);
+                    }
+
+                    parsedData[categoryName][levelName].push({
+                        question: questionText,
+                        options: options
+                    });
                 }
             }
         }
@@ -818,6 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(xmlString, "application/xml");
 
+            // Validação básica do XML de boas-vindas
             if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
                 throw new Error("Erro de sintaxe no XML de boas-vindas. Verifique a estrutura.");
             }
@@ -830,39 +843,67 @@ document.addEventListener('DOMContentLoaded', () => {
             if (logoNode) {
                 welcomeLogo.src = logoNode.getAttribute('src') || '';
                 welcomeLogo.alt = logoNode.getAttribute('alt') || '';
+                if (!welcomeLogo.src) { // Validação se o src do logo está vazio
+                    console.warn("Aviso: O atributo 'src' da tag <logo> no welcome_info.xml está vazio.");
+                }
+            } else {
+                console.warn("Aviso: Tag <logo> não encontrada no XML de boas-vindas.");
             }
 
-            // Preencher título e descrição principal
-            welcomeTitle.textContent = welcomeInfoNode.getElementsByTagName('title')[0]?.textContent || '';
-            welcomeDescription.textContent = welcomeInfoNode.getElementsByTagName('description')[0]?.textContent || '';
+
+            // Preencher título e descrição principal (validação de conteúdo vazio)
+            welcomeTitle.textContent = welcomeInfoNode.getElementsByTagName('title')[0]?.textContent?.trim() || '';
+            if (!welcomeTitle.textContent) console.warn("Aviso: Título principal vazio no welcome_info.xml.");
+
+            welcomeDescription.textContent = welcomeInfoNode.getElementsByTagName('description')[0]?.textContent?.trim() || '';
+            if (!welcomeDescription.textContent) console.warn("Aviso: Descrição principal vazia no welcome_info.xml.");
+
 
             // Preencher Quem Somos
             const whoAreWeNode = welcomeInfoNode.getElementsByTagName('whoAreWe')[0];
             if (whoAreWeNode) {
-                whoAreWeTitle.textContent = whoAreWeNode.getElementsByTagName('title')[0]?.textContent || '';
-                whoAreWeText.textContent = whoAreWeNode.getElementsByTagName('text')[0]?.textContent || '';
+                whoAreWeTitle.textContent = whoAreWeNode.getElementsByTagName('title')[0]?.textContent?.trim() || '';
+                whoAreWeText.textContent = whoAreWeNode.getElementsByTagName('text')[0]?.textContent?.trim() || '';
+                if (!whoAreWeTitle.textContent || !whoAreWeText.textContent) console.warn("Aviso: Seção 'Quem Somos' incompleta no welcome_info.xml.");
+            } else {
+                console.warn("Aviso: Seção 'Quem Somos' não encontrada no welcome_info.xml.");
             }
+
 
             // Preencher Localização
             const locationNode = welcomeInfoNode.getElementsByTagName('location')[0];
             if (locationNode) {
-                locationTitle.textContent = locationNode.getElementsByTagName('title')[0]?.textContent || '';
-                locationText.textContent = locationNode.getElementsByTagName('text')[0]?.textContent || '';
+                locationTitle.textContent = locationNode.getElementsByTagName('title')[0]?.textContent?.trim() || '';
+                locationText.textContent = locationNode.getElementsByTagName('text')[0]?.textContent?.trim() || '';
+                if (!locationTitle.textContent || !locationText.textContent) console.warn("Aviso: Seção 'Localização' incompleta no welcome_info.xml.");
+            } else {
+                console.warn("Aviso: Seção 'Localização' não encontrada no welcome_info.xml.");
             }
+
 
             // Preencher Contactos
             const contactsNode = welcomeInfoNode.getElementsByTagName('contacts')[0];
             if (contactsNode) {
-                contactsTitle.textContent = contactsNode.getElementsByTagName('title')[0]?.textContent || ''; // Pode não ter title em contacts
-                const email = contactsNode.getElementsByTagName('email')[0]?.textContent || '#';
-                const phone = contactsNode.getElementsByTagName('phone')[0]?.textContent || '';
-                const socialMedia = contactsNode.getElementsByTagName('socialMedia')[0]?.textContent || '';
+                contactsTitle.textContent = contactsNode.getElementsByTagName('title')[0]?.textContent?.trim() || '';
+                const email = contactsNode.getElementsByTagName('email')[0]?.textContent?.trim() || '';
+                const phone = contactsNode.getElementsByTagName('phone')[0]?.textContent?.trim() || '';
+                const socialMedia = contactsNode.getElementsByTagName('socialMedia')[0]?.textContent?.trim() || '';
 
-                contactEmail.textContent = email;
-                contactEmail.href = `mailto:${email}`; // Adiciona link de email
-                contactPhone.textContent = phone;
-                contactSocialMedia.textContent = socialMedia;
+                if (email) {
+                    contactEmail.textContent = email;
+                    contactEmail.href = `mailto:${email}`;
+                } else {
+                    contactEmail.textContent = 'Não informado'; // Ou remova o elemento se preferir
+                    contactEmail.href = '#';
+                }
+                contactPhone.textContent = phone || 'Não informado';
+                contactSocialMedia.textContent = socialMedia || 'Não informado';
+
+                if (!email && !phone && !socialMedia) console.warn("Aviso: Seção 'Contactos' vazia no welcome_info.xml.");
+            } else {
+                console.warn("Aviso: Seção 'Contactos' não encontrada no welcome_info.xml.");
             }
+
 
             console.log("Informações de boas-vindas carregadas com sucesso!");
 

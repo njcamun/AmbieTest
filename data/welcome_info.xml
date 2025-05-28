@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<welcomeInfo>
+    <logo src="../images/logo.jpg" alt="Logo do Quiz"/>
+    <title>Bem-vindo ao Quiz do Conhecimento!</title>
+    <description>
+        Este quiz foi desenvolvido para testar e expandir seu conhecimento em diversas áreas. Prepare-se para um desafio divertido e educativo!
+    </description>
+    <whoAreWe>
+        <title>Quem Somos</title>
+        <text>Somos uma equipe apaixonada por educação e tecnologia, dedicada a criar ferramentas interativas para o aprendizado.</text>
+    </whoAreWe>
+    <location>
+        <title>Localização</title>
+        <text>Luanda, Angola</text>
+    </location>
+    <contacts>
+        <title>Contactos</title>
+        <email>info@quizconhecimento.com</email>
+        <phone>+244 9XX XXX XXX</phone>
+        <socialMedia>@QuizConhecimento</socialMedia>
+    </contacts>
+</welcomeInfo>
