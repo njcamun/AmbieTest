@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Elementos da Tela de Boas-Vindas (Nome e Info Dinâmica) ---
     const participantNameInput = document.getElementById('participantName');
-    const welcomeLogo = document.getElementById('welcomeLogo');
+    // const welcomeLogo = document.getElementById('welcomeLogo'); // REMOVIDO: Logo agora está no HTML direto
     const welcomeTitle = document.getElementById('welcomeTitle');
     const welcomeDescription = document.getElementById('welcomeDescription');
     const whoAreWeTitle = document.getElementById('whoAreWeTitle');
@@ -838,19 +838,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const welcomeInfoNode = xmlDoc.getElementsByTagName('welcomeInfo')[0];
             if (!welcomeInfoNode) throw new Error("Tag <welcomeInfo> não encontrada no XML de boas-vindas.");
 
-            // Preencher logo
-            const logoNode = welcomeInfoNode.getElementsByTagName('logo')[0];
-            if (logoNode) {
-                welcomeLogo.src = logoNode.getAttribute('src') || '';
-                welcomeLogo.alt = logoNode.getAttribute('alt') || '';
-                if (!welcomeLogo.src) { // Validação se o src do logo está vazio
-                    console.warn("Aviso: O atributo 'src' da tag <logo> no welcome_info.xml está vazio.");
-                }
-            } else {
-                console.warn("Aviso: Tag <logo> não encontrada no XML de boas-vindas.");
-            }
-
-
+            // LOGO AGORA É CARREGADO DIRETAMENTE NO HTML (NÃO VIA XML)
             // Preencher título e descrição principal (validação de conteúdo vazio)
             welcomeTitle.textContent = welcomeInfoNode.getElementsByTagName('title')[0]?.textContent?.trim() || '';
             if (!welcomeTitle.textContent) console.warn("Aviso: Título principal vazio no welcome_info.xml.");
@@ -893,7 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     contactEmail.textContent = email;
                     contactEmail.href = `mailto:${email}`;
                 } else {
-                    contactEmail.textContent = 'Não informado'; // Ou remova o elemento se preferir
+                    contactEmail.textContent = 'Não informado';
                     contactEmail.href = '#';
                 }
                 contactPhone.textContent = phone || 'Não informado';
@@ -909,7 +897,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error("Não foi possível carregar as informações de boas-vindas:", error);
-            // Poderíamos exibir uma mensagem na tela inicial para o usuário aqui.
         }
     }
 
