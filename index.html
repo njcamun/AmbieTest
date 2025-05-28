@@ -3,39 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caminho do Conhecimento</title>
+    <title>Quiz do Conhecimento</title>
     <link rel="stylesheet" href="style.css"> </head>
 <body>
 
     <section id="welcomeScreen" class="screen active">
         <div class="welcome-container">
-            <img src="images/logo.jpg" alt="Logo do Quiz" class="logo">
-			<div class="name-input-container">
-                <input type="text" id="participantName" placeholder="Ola, digite seu nome" required minlength="4" maxlength="25">
-            </div>
-            <h1>Bem-vindo ao Caminho do Conhecimento!</h1>
-            <p>
-                Este quiz foi desenvolvido para testar e expandir seu conhecimento em diversas áreas. Prepare-se para um desafio divertido e educativo!
-            </p>
+            <img id="welcomeLogo" src="" alt="" class="logo">
+            <h1 id="welcomeTitle"></h1>
+            <p id="welcomeDescription"></p>
 
             <div class="info-section">
-                <h2>Quem Somos</h2>
-                <p>Somos uma equipe apaixonada por educação e tecnologia, dedicada a criar ferramentas interativas para o aprendizado.</p>
+                <h2 id="whoAreWeTitle"></h2>
+                <p id="whoAreWeText"></p>
             </div>
 
             <div class="info-section">
-                <h2>Localização</h2>
-                <p>Luanda, Angola</p>
+                <h2 id="locationTitle"></h2>
+                <p id="locationText"></p>
             </div>
 
             <div class="info-section">
-                <h2>Contactos</h2>
-                <p>Email: <a href="mailto:info@quizconhecimento.com">info@quizconhecimento.com</a></p>
-                <p>Telefone: +244 9XX XXX XXX</p>
-                <p>Redes Sociais: @QuizConhecimento</p>
+                <h2 id="contactsTitle"></h2>
+                <p>Email: <a href="#" id="contactEmail"></a></p>
+                <p>Telefone: <span id="contactPhone"></span></p>
+                <p>Redes Sociais: <span id="contactSocialMedia"></span></p>
             </div>
 
-            <button id="startButton" class="btn primary-btn">Iniciar Caminho da sabedoria</button>
+            <div class="name-input-container">
+                <label for="participantName">Seu Nome:</label>
+                <input type="text" id="participantName" placeholder="Digite seu nome" required minlength="2" maxlength="20">
+            </div>
+
+            <button id="startButton" class="btn primary-btn">Iniciar Quiz</button>
         </div>
     </section>
 
@@ -72,7 +72,7 @@
             <div class="category-grid">
                 <button class="btn category-btn" data-category="trivium">
                     <h3>Trivium</h3>
-                    <p>Gramática, Lógica e Retórica</p>
+                    <p>Lógica, Gramática e Retórica</p>
                 </button>
                 <button class="btn category-btn" data-category="quadrivium">
                     <h3>Quadrivium</h3>
@@ -82,44 +82,46 @@
                     <h3>Bíblia</h3>
                     <p>Conhecimento Bíblico</p>
                 </button>
-				<button class="btn category-btn" data-category="mwangole">
-                    <h3>Mwangolé</h3>
-                    <p>História e Geografia de Angola</p>
-                </button>
-				<button class="btn category-btn" data-category="generalCulture">
+                <button class="btn category-btn" data-category="generalCulture">
                     <h3>Cultura Geral</h3>
                     <p>História e Geografia Universal</p>
                 </button>
-				<button class="btn category-btn" data-category="solomonMode">
+                <button class="btn category-btn" data-category="mwangole">
+                    <h3>Mwangole</h3>
+                    <p>História e Geografia de Angola</p>
+                </button>
+                <button class="btn category-btn" data-category="solomonMode">
                     <h3>Modo Salomão</h3>
-                    <p>Mestre do conhecimento</p>
-                </button>				
+                    <p>Sabedoria e Conhecimento Avançado</p>
+                </button>
             </div>
             <button id="backToMainMenuFromCategories" class="btn secondary-btn">Voltar ao Menu Principal</button>
         </div>
     </section>
 
-    <section id="quizScreen" class="screen hidden">
-        <div class="quiz-container">
-            <h2 id="categoryTitle"></h2> <div id="levelSelection" class="level-selection-grid">
+    <section id="levelSelectionScreen" class="screen hidden">
+        <div class="level-selection-container">
+            <h2 id="levelCategoryTitle"></h2> <div id="levelSelection" class="level-selection-grid">
                 <h3>Escolha o Nível:</h3>
             </div>
-
-             <div id="questionArea" class="question-area hidden">
-                <div class="timer-container">
-                    ⏰ Tempo Restante: <span id="timer"></span> segundos
-                </div>
-                <p class="question-counter">Pergunta <span id="currentQuestionNum">1</span> de <span id="totalQuestionsNum">15</span></p>
-                <h3 id="questionText"></h3>
-				<button id="hintButton" class="btn secondary-btn hint-btn">💡 Dica (-5 Pontos)</button>
-                <div id="optionsContainer" class="options-container">
-                    </div>
-                <button id="nextQuestionButton" class="btn primary-btn hidden">Próxima Pergunta</button>
-                <p id="feedbackMessage" class="feedback-message"></p>
-            </div>
-
-            <button id="backToCategoriesFromQuiz" class="btn secondary-btn">Voltar às Categorias</button>
+            <button id="backToCategoriesFromLevels" class="btn secondary-btn">Voltar às Categorias</button>
         </div>
+    </section>
+
+    <section id="questionScreen" class="screen hidden">
+        <div class="quiz-container">
+            <h2 id="questionCategoryLevelTitle"></h2> <div class="timer-container">
+                ⏰ Tempo Restante: <span id="timer"></span> segundos
+            </div>
+            <p class="question-counter">Pergunta <span id="currentQuestionNum">1</span> de <span id="totalQuestionsNum">15</span></p>
+            <h3 id="questionText"></h3>
+            <button id="hintButton" class="btn secondary-btn hint-btn">💡 Dica (-5 Pontos)</button>
+            <div id="optionsContainer" class="options-container">
+                </div>
+            <button id="nextQuestionButton" class="btn primary-btn hidden">Próxima Pergunta</button>
+            <p id="feedbackMessage" class="feedback-message"></p>
+        </div>
+        <button id="backToLevelsFromQuestions" class="btn secondary-btn">Voltar aos Níveis</button>
     </section>
 
     <section id="resultScreen" class="screen hidden">
@@ -127,10 +129,9 @@
             <h1>Resultado do Quiz</h1>
             <p>Sua pontuação final: <span id="finalScore">0</span> de <span id="maxScore">0</span></p>
             <p id="resultMessage"></p>
-
             <div id="quizDetails" class="quiz-details">
                 <h2>Detalhes das Respostas:</h2>
-                </div>
+            </div>
             <button id="playAgainButton" class="btn primary-btn">Jogar Novamente</button>
             <button id="backToMainFromResults" class="btn secondary-btn">Voltar ao Menu Principal</button>
         </div>
@@ -139,11 +140,10 @@
     <section id="historyScreen" class="screen hidden">
         <div class="content-container">
             <h1>Histórico de Atividade</h1>
-            <p>Acompanhe seu progresso e resultados nos quizzes.</p>
-			<div id="historyList" class="history-list">
+            <div id="historyList" class="history-list">
                 <p>Nenhum quiz jogado ainda.</p>
             </div>
-            <button id="clearHistoryButton" class="btn secondary-btn" style="margin-top: 20px;">Limpar Histórico</button>
+            <button id="clearHistoryButton" class="btn secondary-btn clear-history-btn">Limpar Histórico</button>
             <button id="backToMainMenuFromHistory" class="btn secondary-btn">Voltar ao Menu Principal</button>
         </div>
     </section>
