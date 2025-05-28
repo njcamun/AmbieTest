@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+    <category name="trivium">
+        <level name="level1">
+            <question>
+                <text>Qual é o plural de 'mão'?</text>
+                <option correct="false">mãos</option>
+                <option correct="true">mães</option>
+                <option correct="false">mões</option>
+                <option correct="false">mãons</option>
+            </question>
+            <question>
+                <text>Complete a frase: "Ele _______ ao mercado."</text>
+                <option correct="false">foi</option>
+                <option correct="true">vou</option>
+                <option correct="false">iri</option>
+                <option correct="false">vá</option>
+            </question>
+            </level>
+        </category>
+
+    <category name="quadrivium">
+        <level name="level1">
+            <question>
+                <text>Quanto é 5 x 6?</text>
+                <option correct="true">30</option>
+                <option correct="false">25</option>
+                <option correct="false">35</option>
+                <option correct="false">20</option>
+            </question>
+            </level>
+        </category>
+
+    <category name="bible">
+        <level name="level1">
+            <question>
+                <text>Quantos dias durou o dilúvio?</text>
+                <option correct="true">40 dias e 40 noites</option>
+                <option correct="false">7 dias e 7 noites</option>
+                <option correct="false">10 dias e 10 noites</option>
+                <option correct="false">1 dia e 1 noite</option>
+            </question>
+        </level>
+    </category>
+
+    <category name="generalCulture">
+        <level name="level1">
+            <question>
+                <text>Qual é a capital do Japão?</text>
+                <option correct="true">Tóquio</option>
+                <option correct="false">Pequim</option>
+                <option correct="false">Seul</option>
+                <option correct="false">Bangkok</option>
+            </question>
+        </level>
+    </category>
+
+    <category name="mwangole">
+        <level name="level1">
+            <question>
+                <text>Qual rio importante nasce em Angola e desagua no Atlântico?</text>
+                <option correct="true">Rio Cuanza</option>
+                <option correct="false">Rio Zaire</option>
+                <option correct="false">Rio Cunene</option>
+                <option correct="false">Rio Zambeze</option>
+            </question>
+        </level>
+    </category>
+
+    <category name="solomonMode">
+        <level name="level1">
+            <question>
+                <text>Qual a principal lição do livro de Eclesiastes?</text>
+                <option correct="true">Tudo é vaidade sem Deus</option>
+                <option correct="false">A importância da riqueza material</option>
+                <option correct="false">O poder da sabedoria humana</option>
+                <option correct="false">A futilidade da vida após a morte</option>
+            </question>
+        </level>
+    </category>
+</quiz>
