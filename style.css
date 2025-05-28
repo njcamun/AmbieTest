@@ -4,8 +4,8 @@
 /* --- Estilos Globais e Reset Básico --- */
 :root {
     /* Cores principais */
-    --primary-color: #FF6B6B; /* Vermelho vibrante */
-    --secondary-color: #87CEEB; /* Azul Claro (SkyBlue) para botões secundários */
+    --primary-color: #ff2f2f; /* Vermelho vibrante */
+    --secondary-color: #57c4ff; /* Azul Claro (SkyBlue) para botões secundários */
     --accent-color: #FFD166; /* Amarelo ensolarado */
     --dark-blue: #0A1931; /* Azul escuro para texto principal */
     --light-gray: #F8F8F8; /* Fundo claro */
@@ -13,8 +13,8 @@
     --cyan-blue: #00BCD4; /* Azul Ciano para info-section h2 */
 
     /* Sombras */
-    --btn-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    --container-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    --btn-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --container-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 
     /* Bordas */
     --border-radius-lg: 25px;
@@ -29,14 +29,15 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
-    background-image: url('images/fundo.jpg'); /* Mude 'background-quiz.jpg' para o nome do seu arquivo */
+    /* MANTÉM A IMAGEM DE FUNDO */
+    background-image: url('assets/background-quiz.jpg'); /* Verifique o caminho da sua imagem */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-color: #A8E6CF; /* Cor de fallback */
+    background-color: #E0FFFF; /* Cor de fallback que combine (Azure) */
 
-    color: var(--dark-blue);
+    color: var(--dark-blue); /* Texto principal agora é preto suave */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,10 +48,10 @@ body {
 
 h1, h2, h3 {
     font-family: 'Fredoka One', cursive;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Títulos em Azul Pastel Claro */
     margin-bottom: 15px;
     text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 p {
@@ -60,7 +61,7 @@ p {
 }
 
 a {
-    color: var(--secondary-color);
+    color: var(--dark-blue); /* Links em preto suave */
     text-decoration: none;
     font-weight: bold;
 }
@@ -71,11 +72,11 @@ a:hover {
 
 /* --- Estilos para as Telas --- */
 .screen {
-    background-color: rgba(255, 255, 255, 0.6); /* Cor de fundo branca com 40% de transparência */
-    backdrop-filter: blur(5px); /* Opcional: Efeito de desfoque no fundo atrás da tela */
+    background-color: rgba(255, 255, 255, 0.75); /* Branco com um pouco mais de opacidade */
+    backdrop-filter: blur(6px); /* Desfoque um pouco mais suave */
     border-radius: var(--border-radius-lg);
     box-shadow: var(--container-shadow);
-    padding: 30px;
+    padding: 20px;
     width: 90%;
     max-width: 600px;
     text-align: center;
@@ -118,45 +119,45 @@ a:hover {
 }
 
 .primary-btn {
-    background-color: var(--primary-color);
-    color: var(--white);
-    border-bottom: 4px solid #D63447;
+    background-color: var(--primary-color); /* Azul Pastel Claro */
+    color: var(--white); /* Texto branco para contraste */
+    border-bottom: 4px solid #5A7B99; /* Tom mais escuro para o efeito 3D */
 }
 
 .primary-btn:hover {
-    background-color: #FF4757;
+    background-color: #7AA0BC; /* Azul um pouco mais escuro no hover */
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .primary-btn:active {
     transform: translateY(2px);
-    border-bottom: 2px solid #D63447;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #5A7B99;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .secondary-btn {
-    background-color: var(--secondary-color); /* Usando a variável azul claro */
-    color: var(--dark-blue);
-    border-bottom: 4px solid #6A9ECC;
+    background-color: var(--secondary-color); /* Azul Acinzentado Suave */
+    color: var(--dark-blue); /* Texto em preto suave */
+    border-bottom: 4px solid #8CAFC0; /* Tom mais escuro para o efeito 3D */
 }
 
 .secondary-btn:hover {
-    background-color: #7ECFF4;
+    background-color: #B2C9D7; /* Azul um pouco mais claro no hover */
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .secondary-btn:active {
     transform: translateY(2px);
-    border-bottom: 2px solid #6A9ECC;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #8CAFC0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .category-btn {
-    background-color: var(--accent-color);
+    background-color: var(--accent-color); /* Cinza Muito Claro */
     color: var(--dark-blue);
-    border-bottom: 4px solid #DDAA44;
+    border-bottom: 4px solid #C0C0C0; /* Tom mais escuro para o efeito 3D */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -167,9 +168,9 @@ a:hover {
 }
 
 .category-btn:hover {
-    background-color: #FFC033;
+    background-color: #D3D3D3; /* Cinza um pouco mais escuro no hover */
     transform: translateY(-3px) rotate(2deg);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .category-btn h3 {
@@ -196,19 +197,19 @@ a:hover {
     filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.2));
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid var(--accent-color);
+    border: 5px solid var(--accent-color); /* Borda em Cinza Muito Claro */
 }
 
 .info-section {
-    background-color: var(--light-gray);
+    background-color: var(--light-gray); /* Branco Suave */
     border-radius: var(--border-radius-md);
     padding: 15px;
     margin-bottom: 15px;
-    border: 2px dashed var(--accent-color);
+    border: 2px dashed var(--secondary-color); /* Borda em Azul Acinzentado Suave */
 }
 
 .info-section h2 {
-    color: var(--cyan-blue); /* Usando a variável azul ciano */
+    color: var(--cyan-blue); /* Azul Acinzentado Claro */
     font-size: 1.4em;
     margin-bottom: 10px;
 }
@@ -216,30 +217,24 @@ a:hover {
 /* Estilos para o campo de nome */
 .name-input-container {
     margin-bottom: 20px;
-    width: 80%; /* Para não ser muito largo em telas grandes */
-    max-width: 300px; /* Limite de largura */
+    width: 80%;
+    max-width: 300px;
     text-align: left;
 }
 
 .name-input-container label {
-    display: block; /* Garante que o label fique acima do input */
-    font-family: 'Fredoka One', cursive;
-    color: var(--dark-blue);
-    margin-bottom: 5px;
     font-size: 1.1em;
 }
 
 .name-input-container input[type="text"] {
-    width: 100%;
     padding: 10px 15px;
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--secondary-color); /* Borda em Azul Acinzentado Suave */
     border-radius: var(--border-radius-md);
     font-family: 'Open Sans', sans-serif;
     font-size: 1em;
     color: var(--dark-blue);
-    background-color: var(--light-gray);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra interna para profundidade */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--white); /* Fundo branco para input */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .name-input-container input[type="text"]::placeholder {
@@ -247,8 +242,8 @@ a:hover {
 }
 
 .name-input-container input[type="text"]:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3); /* Um "brilho" ao focar */
+    border-color: var(--primary-color); /* Brilho em Azul Pastel Claro */
+    box-shadow: 0 0 0 3px rgba(176, 224, 230, 0.3);
     outline: none;
 }
 
@@ -269,9 +264,8 @@ a:hover {
     grid-template-columns: 1fr;
 }
 
-/* Novo container para a tela de seleção de nível, para aplicar padding e alinhamento */
 .level-selection-container {
-    padding: 20px; /* Espaçamento interno */
+    padding: 20px;
     text-align: center;
     width: 100%;
 }
@@ -286,32 +280,32 @@ a:hover {
 }
 
 .level-btn {
-    background-color: #FFC6C6;
+    background-color: var(--secondary-color); /* Azul Acinzentado Suave para níveis */
     color: var(--dark-blue);
-    border-bottom: 3px solid #E6A0A0;
+    border-bottom: 3px solid #8CAFC0; /* Tom mais escuro */
     padding: 10px;
     font-size: 1.1em;
     min-width: unset;
 }
 
 .level-btn:hover {
-    background-color: #FFABAB;
+    background-color: #B2C9D7; /* Azul mais claro no hover */
     transform: translateY(-2px);
 }
 
 /* Estilos para Níveis Bloqueados */
 .level-btn.locked-level {
-    background-color: #cccccc; /* Cinza para bloqueado */
-    color: #666666;
-    border-bottom: 4px solid #999999;
+    background-color: #E0E0E0; /* Cinza claro */
+    color: #9E9E9E;
+    border-bottom: 4px solid #BDBDBD;
     cursor: not-allowed;
     opacity: 0.7;
-    filter: grayscale(50%); /* Efeito de tom de cinza */
+    filter: none;
 }
 
 .level-btn.locked-level:hover {
-    background-color: #cccccc; /* Não muda no hover */
-    transform: none; /* Sem animação no hover */
+    background-color: #E0E0E0;
+    transform: none;
     box-shadow: none;
 }
 
@@ -325,7 +319,7 @@ a:hover {
 .question-counter {
     font-size: 1.1em;
     font-weight: bold;
-    color: var(--secondary-color);
+    color: var(--dark-blue); /* Em preto suave */
     margin-bottom: 10px;
     text-align: center;
 }
@@ -334,14 +328,14 @@ a:hover {
 .timer-container {
     font-family: 'Fredoka One', cursive;
     font-size: 1.5em;
-    color: var(--primary-color);
-    background-color: var(--accent-color);
+    color: var(--dark-blue); /* Texto em preto suave */
+    background-color: var(--accent-color); /* Cinza Muito Claro */
     border-radius: var(--border-radius-md);
     padding: 10px 20px;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    display: inline-block; /* Para o background abraçar o texto */
-    animation: pulse 1.5s infinite alternate; /* Animação de pulso */
+    display: inline-block;
+    animation: pulse 1.5s infinite alternate;
 }
 
 @keyframes pulse {
@@ -350,9 +344,9 @@ a:hover {
 }
 
 .timer-container.low-time {
-    color: var(--white); /* Texto branco */
-    background-color: #dc3545; /* Fundo vermelho para tempo baixo */
-    animation: blink 0.8s infinite alternate; /* Animação de piscar */
+    color: var(--white);
+    background-color: #F44336; /* Vermelho de alerta */
+    animation: blink 0.8s infinite alternate;
 }
 
 @keyframes blink {
@@ -362,33 +356,33 @@ a:hover {
 
 
 .question-area h3 {
-    text-align: left;
+    text-align: center;
     font-size: 1.6em;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Azul Pastel Claro */
     margin-bottom: 20px;
 }
 
 /* Estilos para o Botão de Dica */
 .hint-btn {
-    background-color: #8D99AE; /* Um cinza azulado neutro */
-    color: var(--white);
-    border-bottom: 4px solid #6D7B8C;
-    margin-top: 15px; /* Espaçamento da pergunta */
-    margin-bottom: 25px; /* Espaçamento das opções */
+    background-color: #A9B7C0; /* Azul Acinzentado Suave (similar ao secondary) */
+    color: var(--dark-blue);
+    border-bottom: 4px solid #95AFBB;
+    margin-top: 15px;
+    margin-bottom: 25px;
     font-size: 1.1em;
     padding: 10px 20px;
 }
 
 .hint-btn:hover {
-    background-color: #A0ACB9;
+    background-color: #B2C9D7;
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .hint-btn:active {
     transform: translateY(2px);
-    border-bottom: 2px solid #6D7B8C;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #95AFBB;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hint-btn[disabled] {
@@ -396,7 +390,7 @@ a:hover {
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
-    border-bottom: 4px solid #6D7B8C;
+    border-bottom: 4px solid #95AFBB;
 }
 
 .options-container {
@@ -407,9 +401,9 @@ a:hover {
 }
 
 .option-btn {
-    background-color: var(--light-gray);
+    background-color: var(--light-gray); /* Branco Suave */
     color: var(--dark-blue);
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--secondary-color); /* Borda em Azul Acinzentado Suave */
     border-radius: var(--border-radius-md);
     padding: 15px 20px;
     text-align: left;
@@ -421,30 +415,30 @@ a:hover {
 }
 
 .option-btn:hover {
-    background-color: var(--accent-color);
+    background-color: var(--accent-color); /* Cinza Muito Claro */
     transform: scale(1.02);
 }
 
 .option-btn.selected {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Azul Celeste Pastel */
     color: var(--white);
     border-color: var(--primary-color);
 }
 
-.option-btn.correct-answer { /* Estilo para a resposta correta após a seleção */
-    background-color: #28a745; /* Verde */
-    color: white;
+.option-btn.correct-answer {
+    background-color: var(--green-correct); /* Amarelo Pálido (para acerto) */
+    color: var(--dark-blue); /* Texto em preto suave */
     font-weight: bold;
-    border-color: #28a745;
-    animation: bounceIn 0.5s ease-out; /* Animação para a resposta correta */
+    border-color: var(--green-correct);
+    animation: bounceIn 0.5s ease-out;
 }
 
-.option-btn.wrong-answer { /* Estilo para a resposta errada selecionada */
-    background-color: #dc3545; /* Vermelho */
-    color: white;
+.option-btn.wrong-answer {
+    background-color: var(--red-error); /* Rosa Pálido (para erro) */
+    color: var(--dark-blue); /* Texto em preto suave */
     font-weight: bold;
-    border-color: #dc3545;
-    animation: shake 0.5s ease-out; /* Animação para a resposta errada */
+    border-color: var(--red-error);
+    animation: shake 0.5s ease-out;
 }
 
 @keyframes bounceIn {
@@ -464,15 +458,15 @@ a:hover {
     font-weight: bold;
     font-size: 1.2em;
     margin-top: 15px;
-    color: var(--primary-color);
+    color: var(--dark-blue);
 }
 
 .feedback-message.correct {
-    color: #28a745;
+    color: #4CAF50; /* Verde mais vibrante para feedback de texto */
 }
 
 .feedback-message.incorrect {
-    color: #dc3545;
+    color: #F44336; /* Vermelho Tomate mais vibrante para feedback de texto */
 }
 
 /* Estilos para a tela de Resultado */
@@ -487,7 +481,7 @@ a:hover {
 
 .result-container span {
     font-weight: bold;
-    color: var(--secondary-color);
+    color: var(--secondary-color); /* Pontuação em Azul Acinzentado Suave */
 }
 
 /* Estilos para a Seção de Detalhes do Quiz na Tela de Resultado */
@@ -497,8 +491,8 @@ a:hover {
     padding: 20px;
     margin-top: 30px;
     text-align: left;
-    max-height: 300px; /* Limita a altura para que não fique muito longa */
-    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito longo */
+    max-height: 300px;
+    overflow-y: auto;
     border: 2px dashed var(--secondary-color);
 }
 
@@ -516,7 +510,8 @@ a:hover {
 }
 
 .question-detail:last-child {
-    border-bottom: none; /* Sem borda na última pergunta */
+    border-bottom: none;
+    margin-bottom: 0;
 }
 
 .question-detail p {
@@ -528,16 +523,16 @@ a:hover {
 
 .question-detail .user-answer {
     font-weight: bold;
-    color: #3498db; /* Azul para a resposta do usuário */
+    color: #6A5ACD; /* Azul mais profundo para user-answer */
 }
 
 .question-detail .correct-answer-text {
     font-weight: bold;
-    color: #28a745; /* Verde para a resposta correta */
+    color: var(--green-correct); /* Amarelo Pálido */
 }
 
 .question-detail.incorrect .user-answer {
-    color: #dc3545; /* Vermelho para a resposta errada */
+    color: var(--red-error); /* Rosa Pálido */
 }
 
 /* Estilos para a tela de Atualizar Perguntas */
@@ -545,8 +540,8 @@ a:hover {
     margin: 20px 0;
     padding: 10px;
     border: 2px solid var(--secondary-color);
-    border-radius: 8px;
-    background-color: var(--light-gray);
+    border-radius: var(--border-radius-md);
+    background-color: var(--white);
 }
 
 #xmlFeedback {
@@ -561,9 +556,9 @@ a:hover {
     background-color: var(--light-gray);
     border-radius: var(--border-radius-md);
     padding: 15px;
-    max-height: 400px; /* Altura máxima para rolagem */
-    overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo exceder a altura */
-    border: 2px dashed var(--accent-color);
+    max-height: 400px;
+    overflow-y: auto;
+    border: 2px dashed var(--accent-color); /* Borda em Cinza Muito Claro */
     text-align: left;
 }
 
@@ -598,22 +593,66 @@ a:hover {
 
 .clear-history-btn {
     margin-top: 20px;
-    background-color: #dc3545; /* Cor vermelha para "limpar" */
-    border-bottom: 4px solid #b22222;
+    background-color: #FF6347; /* Vermelho Tomate (para botão de limpar) */
+    border-bottom: 4px solid #CC4C3B;
     color: var(--white);
 }
 
 .clear-history-btn:hover {
-    background-color: #c82333;
+    background-color: #FF785A;
+}
+
+/* --- Estilos para o Loading Overlay --- */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loading-overlay p {
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.8em;
+    margin-top: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo do Spinner (animação de carregamento) */
+.spinner {
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-top: 8px solid var(--primary-color); /* Azul Celeste Pastel */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* --- Media Queries para Responsividade --- */
 @media (max-width: 768px) {
     .screen {
-        padding: 20px;
-        width: 95%;
-        max-width: 500px;
-        min-height: 450px;
+        padding: 25px;
+        max-width: 550px;
+        min-height: 480px;
     }
 
     h1 {
@@ -625,26 +664,35 @@ a:hover {
     }
 
     .btn {
-        padding: 12px 25px;
+        padding: 14px 28px;
         font-size: 1.1em;
     }
 
     .large-btn {
         font-size: 1.3em;
-        padding: 15px 25px;
     }
 
     .category-btn {
-        height: 100px;
+        height: 110px;
         font-size: 1em;
     }
 
-    .category-btn h3 {
-        font-size: 1.2em;
+    .logo {
+        max-width: 80px;
+        height: 80px;
     }
 
-    .category-btn p {
-        font-size: 0.8em;
+    .info-section {
+        padding: 5px;
+    }
+
+    .name-input-container {
+        width: 90%;
+    }
+
+    .level-btn {
+        padding: 10px;
+        font-size: 1.1em;
     }
 
     .question-area h3 {
@@ -652,18 +700,28 @@ a:hover {
     }
 
     .option-btn {
-        padding: 12px 15px;
-        font-size: 1em;
+        padding: 16px 20px;
+        font-size: 1.1em;
     }
 
     .timer-container {
-        font-size: 1.2em;
-        padding: 8px 15px;
+        font-size: 1.3em;
+        padding: 10px 18px;
     }
 
     .hint-btn {
-        font-size: 1em;
-        padding: 8px 15px;
+        font-size: 1.1em;
+        padding: 10px 18px;
+    }
+
+    .loading-overlay p {
+        font-size: 1.6em;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border-width: 6px;
     }
 }
 
@@ -673,10 +731,10 @@ a:hover {
     }
 
     .screen {
-        padding: 15px;
-        width: 98%;
-        max-width: 380px;
-        min-height: 400px;
+        padding: 20px;
+        width: 95%;
+        max-width: 400px;
+        min-height: 450px;
     }
 
     h1 {
@@ -684,23 +742,24 @@ a:hover {
     }
 
     h2 {
-        font-size: 1.3em;
+        font-size: 1.6em;
     }
 
     .btn {
-        padding: 10px 20px;
-        font-size: 1em;
-        margin: 8px 3px;
+        padding: 12px 25px;
+        font-size: 1.1em;
+        margin: 10px 5px;
     }
 
     .large-btn {
-        font-size: 1.1em;
-        padding: 12px 20px;
-        margin-bottom: 15px;
+        font-size: 1.2em;
+        padding: 14px 25px;
+        margin-bottom: 20px;
     }
 
     .logo {
-        max-width: 120px;
+        max-width: 80px;
+        height: 80px;
     }
 
     .info-section {
@@ -709,11 +768,10 @@ a:hover {
 
     .name-input-container {
         width: 95%;
-        max-width: none;
     }
 
     .category-grid, .main-menu-grid, .level-selection-grid {
-        gap: 15px;
+        gap: 20px;
     }
 
     .category-grid {
@@ -721,31 +779,41 @@ a:hover {
     }
 
     .level-selection-grid {
-        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
     }
 
     .level-btn {
-        padding: 8px;
-        font-size: 0.9em;
+        padding: 10px;
+        font-size: 1em;
     }
 
     .question-area h3 {
-        font-size: 1.2em;
+        font-size: 1.4em;
     }
 
     .option-btn {
-        padding: 10px 12px;
-        font-size: 0.9em;
+        padding: 14px 18px;
+        font-size: 1em;
     }
 
     .timer-container {
-        font-size: 1em;
-        padding: 6px 10px;
+        font-size: 1.1em;
+        padding: 8px 15px;
     }
 
     .hint-btn {
-        font-size: 0.9em;
-        padding: 6px 12px;
+        font-size: 1em;
+        padding: 8px 15px;
         width: 100%;
+    }
+
+    .loading-overlay p {
+        font-size: 1.4em;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border-width: 7px;
     }
 }

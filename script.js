@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const welcomeScreen = document.getElementById('welcomeScreen');
     const mainScreen = document.getElementById('mainScreen');
     const categorySelectionScreen = document.getElementById('categorySelectionScreen');
-    const levelSelectionScreen = document.getElementById('levelSelectionScreen'); // NOVA TELA
-    const questionScreen = document.getElementById('questionScreen'); // ANTIGA quizScreen, renomeada
+    const levelSelectionScreen = document.getElementById('levelSelectionScreen');
+    const questionScreen = document.getElementById('questionScreen');
     const resultScreen = document.getElementById('resultScreen');
     const historyScreen = document.getElementById('historyScreen');
     const updateQuestionsScreen = document.getElementById('updateQuestionsScreen');
@@ -22,18 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const optionsContainer = document.getElementById('optionsContainer');
     const feedbackMessageElement = document.getElementById('feedbackMessage');
     const hintButton = document.getElementById('hintButton');
-    const questionCategoryLevelTitle = document.getElementById('questionCategoryLevelTitle'); // Novo título para tela de perguntas
+    const questionCategoryLevelTitle = document.getElementById('questionCategoryLevelTitle');
 
     // --- Elementos da LevelSelectionScreen ---
-    const levelCategoryTitle = document.getElementById('levelCategoryTitle'); // Título para tela de seleção de nível
-    const levelSelectionContainer = document.getElementById('levelSelection'); // Container dos botões de nível
+    const levelCategoryTitle = document.getElementById('levelCategoryTitle');
+    const levelSelectionContainer = document.getElementById('levelSelection');
 
     // --- Elementos de Áudio ---
-    // Certifique-se de que esses arquivos existam na pasta 'sounds/'
     const correctSound = new Audio('sounds/correct.mp3');
     const incorrectSound = new Audio('sounds/incorrect.mp3');
     const timeoutSound = new Audio('sounds/timeout.mp3');
-    const hintSound = new Audio('sounds/hint.mp3'); // Certifique-se de ter este arquivo também!
+    const hintSound = new Audio('sounds/hint.mp3');
 
     // --- Elementos do Histórico ---
     const historyList = document.getElementById('historyList');
@@ -41,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Elementos da Tela de Boas-Vindas (Nome e Info Dinâmica) ---
     const participantNameInput = document.getElementById('participantName');
-    // const welcomeLogo = document.getElementById('welcomeLogo'); // REMOVIDO: Logo agora está no HTML direto
     const welcomeTitle = document.getElementById('welcomeTitle');
     const welcomeDescription = document.getElementById('welcomeDescription');
     const whoAreWeTitle = document.getElementById('whoAreWeTitle');
@@ -52,6 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactEmail = document.getElementById('contactEmail');
     const contactPhone = document.getElementById('contactPhone');
     const contactSocialMedia = document.getElementById('contactSocialMedia');
+
+    // --- Elemento do Loading Overlay ---
+    const loadingOverlay = document.getElementById('loadingOverlay');
 
 
     // --- 2. Seleção de Botões de Navegação ---
@@ -76,19 +77,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentQuestionIndex = 0;
     let score = 0;
     let quizQuestions = [];
-    const totalQuestionsPerLevel = 15; // Número de perguntas por nível
+    const totalQuestionsPerLevel = 15;
 
     let timeLeft = 0;
     let timerInterval;
-    const timePerQuestion = 15; // Tempo em segundos por pergunta
-    const hintCost = 5; // Custo da dica em pontos
-    const UNLOCK_PERCENTAGE = 80; // % de acertos para desbloquear o próximo nível
+    const timePerQuestion = 15;
+    const hintCost = 5;
+    const UNLOCK_PERCENTAGE = 80;
 
-    let sessionResults = []; // Array para guardar o resultado de cada pergunta na sessão
-    let participantName = ''; // Variável para armazenar o nome do participante
+    let sessionResults = [];
+    let participantName = '';
 
-    const HISTORY_STORAGE_KEY = 'quizHistory'; // Chave para armazenar o histórico no localStorage
-    const PROGRESS_STORAGE_KEY = 'quizProgress'; // Chave para o progresso do usuário no localStorage
+    const HISTORY_STORAGE_KEY = 'quizHistory';
+    const PROGRESS_STORAGE_KEY = 'quizProgress';
 
     // --- Funções para Navegação entre Telas ---
     function showScreen(screenToShow) {
@@ -100,19 +101,26 @@ document.addEventListener('DOMContentLoaded', () => {
         screenToShow.classList.add('active');
     }
 
+    // --- Funções para Mostrar/Esconder o Loading Overlay ---
+    function showLoading() {
+        loadingOverlay.classList.remove('hidden');
+    }
+
+    function hideLoading() {
+        loadingOverlay.classList.add('hidden');
+    }
+
     // --- Adição de Event Listeners para Navegação ---
     startButton.addEventListener('click', async () => {
-        // Validar e capturar o nome do participante
         const name = participantNameInput.value.trim();
         if (name.length < 2) {
             alert("Por favor, digite um nome válido (mínimo 2 caracteres).");
-            participantNameInput.focus(); // Coloca o foco de volta no campo
-            return; // Impede a transição de tela
+            participantNameInput.focus();
+            return;
         }
-        participantName = name; // Armazena o nome
+        participantName = name;
 
         showScreen(mainScreen);
-        // Carrega perguntas padrão apenas se ainda não foram carregadas
         if (Object.keys(quizData).length === 0) {
             console.log("Tentando carregar perguntas padrão...");
             await loadDefaultQuizData();
@@ -133,11 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     viewHistoryButton.addEventListener('click', () => {
         showScreen(historyScreen);
-        displayHistory(); // Chama a função para carregar e exibir o histórico
+        displayHistory();
     });
 
     aboutUsButton.addEventListener('click', () => {
-        showScreen(welcomeScreen);
+        showScreen(aboutUsScreen);
     });
 
     // Botões de Voltar que param o temporizador
@@ -162,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     playAgainButton.addEventListener('click', () => {
-        // Após jogar novamente, volta para a seleção de categorias
         showScreen(categorySelectionScreen);
         stopTimer();
     });
@@ -175,16 +182,20 @@ document.addEventListener('DOMContentLoaded', () => {
         showScreen(mainScreen);
     });
 
+    backToMainMenuFromAboutUs.addEventListener('click', () => {
+        showScreen(mainScreen);
+    });
+
     // --- Lógica de Seleção de Categoria e Níveis ---
     categoryButtons.forEach(button => {
         button.addEventListener('click', () => {
             currentCategory = button.dataset.category;
-            showScreen(levelSelectionScreen); // ALTERADO: Vai para a nova tela de seleção de nível
-            levelCategoryTitle.textContent = button.querySelector('h3').textContent; // Atualiza o título da tela de nível
+            showScreen(levelSelectionScreen);
+            levelCategoryTitle.textContent = button.querySelector('h3').textContent;
 
-            loadLevelsForCategory(currentCategory); // Esta função criará os botões de nível
+            loadLevelsForCategory(currentCategory);
             feedbackMessageElement.textContent = '';
-            stopTimer(); // Garante que nenhum temporizador esteja rodando ao selecionar nível
+            stopTimer();
         });
     });
 
@@ -197,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const levels = Object.keys(quizData[category]).sort((a, b) => {
-            // Garante que "level1" vem antes de "level2" etc.
             const numA = parseInt(a.replace('level', ''));
             const numB = parseInt(b.replace('level', ''));
             return numA - numB;
@@ -208,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const userProgress = getProgress(); // Carrega o progresso do usuário
+        const userProgress = getProgress();
 
         levels.forEach((levelName, index) => {
             const levelButton = document.createElement('button');
@@ -219,30 +229,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const levelNum = parseInt(levelName.replace('level', ''));
             const previousLevelName = `level${levelNum - 1}`;
             
-            // Nível 1 está sempre disponível. Outros níveis são disponíveis se o anterior estiver 'completed'.
-            // Para 'available', ele só pode ser jogado, mas não desbloqueia o próximo.
             const isPreviousLevelCompleted = userProgress[category] && userProgress[category][previousLevelName] === 'completed';
             const isCurrentLevelAvailable = userProgress[category] && userProgress[category][levelName] === 'available';
             const isCurrentLevelCompleted = userProgress[category] && userProgress[category][levelName] === 'completed';
 
-            const isUnlocked = levelNum === 1 || isPreviousLevelCompleted || isCurrentLevelAvailable;
+            // Nível 0 está sempre desbloqueado. Outros níveis precisam do anterior 'completed' ou de já estarem 'available'.
+            const isUnlocked = levelNum === 0 || isPreviousLevelCompleted || isCurrentLevelAvailable;
 
             if (!isUnlocked) {
-                levelButton.classList.add('locked-level'); // Adiciona uma classe para estilos de bloqueado
-                levelButton.disabled = true; // Desabilita o botão
-                levelButton.textContent += ' 🔒'; // Adiciona um cadeado
+                levelButton.classList.add('locked-level');
+                levelButton.disabled = true;
+                levelButton.textContent += ' 🔒';
             } else {
                 if (isCurrentLevelCompleted) {
-                    levelButton.textContent += ' ⭐'; // Estrela se completo
+                    levelButton.textContent += ' ⭐';
                 } else {
-                    levelButton.textContent += ' ✅'; // Check se apenas disponível (e não completo ainda)
+                    levelButton.textContent += ' ✅';
                 }
             }
 
             levelButton.addEventListener('click', () => {
-                if (isUnlocked) { // Apenas permite o clique se estiver desbloqueado
+                if (isUnlocked) {
                     currentLevel = levelName;
-                    loadQuiz(currentCategory, currentLevel); // Carrega o quiz e vai para a tela de perguntas
+                    loadQuiz(currentCategory, currentLevel);
                 }
             });
             levelSelectionContainer.appendChild(levelButton);
@@ -252,26 +261,33 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadQuiz(category, level) {
         if (quizData[category] && quizData[category][level]) {
             quizQuestions = [...quizData[category][level]];
+
+            if (quizQuestions.length === 0) {
+                alert(`Não há perguntas disponíveis para o Nível ${level.replace('level', '')} nesta categoria. Por favor, escolha outro nível ou categoria.`);
+                console.warn(`Nível '${level}' na categoria '${category}' não possui perguntas no XML.`);
+                showScreen(levelSelectionScreen);
+                loadLevelsForCategory(category);
+                return;
+            }
+
             quizQuestions = shuffleArray(quizQuestions);
 
-            // Limita o número de perguntas por nível
             if (quizQuestions.length > totalQuestionsPerLevel) {
                 quizQuestions = quizQuestions.slice(0, totalQuestionsPerLevel);
             }
             document.getElementById('totalQuestionsNum').textContent = quizQuestions.length;
 
             currentQuestionIndex = 0;
-            score = 0; // Reinicia a pontuação ao iniciar um novo quiz/nível
-            sessionResults = []; // Zera o histórico da sessão ao iniciar novo quiz
+            score = 0;
+            sessionResults = [];
 
-            showScreen(questionScreen); // ALTERADO: Vai para a tela de perguntas
-            // Atualiza o título da tela de perguntas com Categoria e Nível
+            showScreen(questionScreen);
             questionCategoryLevelTitle.textContent = `${levelCategoryTitle.textContent} - Nível ${level.replace('level', '')}`;
 
 
             nextQuestionButton.classList.add('hidden');
-            hintButton.classList.remove('hidden'); // Mostra o botão de dica
-            hintButton.disabled = false; // Garante que a dica esteja habilitada
+            hintButton.classList.remove('hidden');
+            hintButton.disabled = false;
             feedbackMessageElement.textContent = '';
 
             displayQuestion();
@@ -284,16 +300,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Funções Principais do Quiz (Display, Seleção, Dica, Avançar) ---
     function displayQuestion() {
-        stopTimer(); // Para o temporizador da pergunta anterior
+        stopTimer();
 
         if (currentQuestionIndex < quizQuestions.length) {
             const question = quizQuestions[currentQuestionIndex];
             questionTextElement.textContent = question.question;
             document.getElementById('currentQuestionNum').textContent = currentQuestionIndex + 1;
-            feedbackMessageElement.textContent = ''; // Limpa a mensagem de feedback
-            timerContainer.classList.remove('low-time'); // Remove classe de tempo baixo ao iniciar nova pergunta
+            feedbackMessageElement.textContent = '';
+            timerContainer.classList.remove('low-time');
 
-            optionsContainer.innerHTML = ''; // Limpa opções anteriores
+            optionsContainer.innerHTML = '';
 
             const shuffledOptions = shuffleArray([...question.options]);
 
@@ -310,30 +326,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             nextQuestionButton.classList.add('hidden');
-            hintButton.disabled = false; // Reabilita o botão de dica para a nova pergunta
-            startTimer(); // Inicia o temporizador para a nova pergunta
+            hintButton.disabled = false;
+            startTimer();
 
         } else {
-            // Fim do quiz para o nível atual
             showResult();
         }
     }
 
     function selectOption(event) {
-        stopTimer(); // Para o temporizador assim que uma opção é selecionada
+        stopTimer();
         const selectedButton = event.target;
         const currentQuestion = quizQuestions[currentQuestionIndex];
         const correctAnswerOption = currentQuestion.options.find(opt => opt.isCorrect);
 
-        // Desativa todos os botões de opção após uma seleção
         document.querySelectorAll('.option-btn').forEach(button => {
             button.classList.remove('selected');
-            button.removeEventListener('click', selectOption); // Impede múltiplos cliques
-            button.disabled = true; // Desabilita os botões para não serem clicados novamente
+            button.removeEventListener('click', selectOption);
+            button.disabled = true;
         });
 
         selectedButton.classList.add('selected');
-        hintButton.disabled = true; // Desabilita a dica após selecionar uma opção
+        hintButton.disabled = true;
 
         const userAnswer = selectedButton.dataset.answer;
         let isCorrect = (userAnswer === correctAnswerOption.text);
@@ -350,7 +364,6 @@ document.addEventListener('DOMContentLoaded', () => {
             incorrectSound.play();
             selectedButton.classList.add('wrong-answer');
 
-            // Destacar a resposta correta após a resposta errada
             document.querySelectorAll('.option-btn').forEach(button => {
                 if (button.dataset.correct === "true") {
                     button.classList.add('correct-answer');
@@ -358,7 +371,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Registrar o resultado da pergunta para o histórico da sessão
         sessionResults.push({
             question: currentQuestion.question,
             userAnswer: userAnswer,
@@ -366,52 +378,50 @@ document.addEventListener('DOMContentLoaded', () => {
             isCorrect: isCorrect
         });
 
-        nextQuestionButton.classList.remove('hidden'); // Ativa o botão "Próxima Pergunta"
+        nextQuestionButton.classList.remove('hidden');
     }
 
     // Lógica do Botão de Dica
     hintButton.addEventListener('click', () => {
-        if (score >= hintCost) { // Verifica se há pontos suficientes para a dica
-            score -= hintCost; // Deduz o custo da pontuação
-            hintSound.play(); // Toca o som da dica
+        const optionButtons = Array.from(optionsContainer.querySelectorAll('.option-btn'));
+        const incorrectOptions = optionButtons.filter(button => button.dataset.correct !== "true" && !button.disabled);
 
-            const optionButtons = Array.from(optionsContainer.querySelectorAll('.option-btn'));
-            // Filtra opções incorretas que não estão desabilitadas (já removidas por outra dica ou selecionadas)
-            const incorrectOptions = optionButtons.filter(button => button.dataset.correct !== "true" && !button.disabled);
+        let numToRemove = 0;
+        if (incorrectOptions.length >= 3) {
+            numToRemove = 2;
+        } else if (incorrectOptions.length === 2) {
+            numToRemove = 1;
+        }
 
-            let numToRemove = 0;
-            // Se houver pelo menos 3 incorretas (para remover 2 e sobrar 1)
-            if (incorrectOptions.length >= 3) {
-                numToRemove = 2;
-            } else if (incorrectOptions.length === 2) { // Se houver 2 incorretas (para remover 1 e sobrar 1)
-                numToRemove = 1;
-            }
+        if (numToRemove > 0) {
+            if (score >= hintCost) {
+                score -= hintCost;
+                hintSound.play();
 
-            if (numToRemove > 0) {
                 const shuffledIncorrect = shuffleArray(incorrectOptions);
                 for (let i = 0; i < numToRemove; i++) {
-                    shuffledIncorrect[i].disabled = true; // Desabilita o botão
-                    shuffledIncorrect[i].style.opacity = '0.3'; // Torna-o semitransparente
-                    shuffledIncorrect[i].style.textDecoration = 'line-through'; // Risca o texto
+                    shuffledIncorrect[i].disabled = true;
+                    shuffledIncorrect[i].style.opacity = '0.3';
+                    shuffledIncorrect[i].style.textDecoration = 'line-through';
                     shuffledIncorrect[i].style.cursor = 'not-allowed';
                 }
                 feedbackMessageElement.textContent = `Dica usada! ${numToRemove} opções incorretas removidas. (-${hintCost} pontos)`;
-                feedbackMessageElement.style.color = '#FFD166'; // Cor de aviso para dica
-            } else {
-                feedbackMessageElement.textContent = `Dica usada! Não foi possível remover mais opções. (-${hintCost} pontos)`;
                 feedbackMessageElement.style.color = '#FFD166';
+            } else {
+                feedbackMessageElement.textContent = `Você precisa de ${hintCost} pontos para usar a dica. Pontuação atual: ${score}`;
+                feedbackMessageElement.style.color = '#dc3545';
+                return;
             }
-
-            hintButton.disabled = true; // Desativa o botão de dica após o uso para esta pergunta
         } else {
-            feedbackMessageElement.textContent = `Você precisa de ${hintCost} pontos para usar a dica. Pontuação atual: ${score}`;
+            feedbackMessageElement.textContent = `Dica indisponível: Poucas opções incorretas para remover.`;
             feedbackMessageElement.style.color = '#dc3545';
         }
+
+        hintButton.disabled = true;
     });
 
     nextQuestionButton.addEventListener('click', () => {
         const selectedButton = document.querySelector('.option-btn.selected');
-        // Este if lida com o caso de clique rápido após tempo esgotado sem seleção.
         if (!selectedButton && timeLeft > 0) {
             feedbackMessageElement.textContent = 'Por favor, selecione uma resposta!';
             feedbackMessageElement.style.color = '#FF6B6B';
@@ -419,9 +429,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         document.querySelectorAll('.option-btn').forEach(button => {
             button.classList.remove('correct-answer', 'wrong-answer', 'selected');
-            button.disabled = false; // Reabilita botões para a próxima pergunta
-            button.style.opacity = '1'; // Reseta opacidade de dica
-            button.style.textDecoration = 'none'; // Reseta risco de dica
+            button.disabled = false;
+            button.style.opacity = '1';
+            button.style.textDecoration = 'none';
         });
 
         currentQuestionIndex++;
@@ -460,28 +470,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleTimeUp() {
         stopTimer();
-        timeoutSound.play(); // Toca apenas o som de tempo esgotado
+        timeoutSound.play();
 
-        const currentQuestion = quizQuestions[currentQuestionIndex]; // Obtém a pergunta atual
-        const correctAnswerOption = currentQuestion.options.find(opt => opt.isCorrect); // Obtém a resposta correta
+        const currentQuestion = quizQuestions[currentQuestionIndex];
+        const correctAnswerOption = currentQuestion.options.find(opt => opt.isCorrect);
 
         feedbackMessageElement.textContent = `Tempo esgotado! A resposta correta era: "${correctAnswerOption.text}" ⏳`;
         feedbackMessageElement.style.color = '#dc3545';
 
         document.querySelectorAll('.option-btn').forEach(button => {
-            button.disabled = true; // Desabilita todas as opções
+            button.disabled = true;
             if (button.dataset.correct === "true") {
                 button.classList.add('correct-answer');
             }
         });
-        hintButton.disabled = true; // Desabilita dica quando o tempo acaba
+        hintButton.disabled = true;
 
-        // Registrar o resultado da pergunta como incorreta por tempo esgotado
         sessionResults.push({
             question: currentQuestion.question,
             userAnswer: "Nenhuma (tempo esgotado)",
             correctAnswer: correctAnswerOption.text,
-            isCorrect: false // Tempo esgotado é sempre uma resposta incorreta
+            isCorrect: false
         });
 
         nextQuestionButton.classList.remove('hidden');
@@ -502,83 +511,58 @@ document.addEventListener('DOMContentLoaded', () => {
     function showResult() {
         stopTimer();
 
-        // Calcular a porcentagem de acertos
         const percentageCorrect = (score / quizQuestions.length) * 100;
-        let unlockedNextLevel = false; // Flag para saber se um novo nível foi desbloqueado
+        let unlockedNextLevel = false;
 
-        // Salvar o resultado no histórico (isso acontece sempre, independentemente da % de acerto)
         saveQuizResult(currentCategory, currentLevel, score, quizQuestions.length, sessionResults);
 
-        // Lógica para desbloquear o próximo nível se a porcentagem for atingida
         if (percentageCorrect >= UNLOCK_PERCENTAGE) {
-            // Marca o nível atual como COMPLETED (concluído com sucesso)
             saveProgress(currentCategory, currentLevel, 'completed');
-            console.log(`Nível ${currentLevel} da categoria ${currentCategory} concluído com ${percentageCorrect.toFixed(2)}% de acerto. Progresso salvo como 'completed'.`);
 
             const nextLevelNum = parseInt(currentLevel.replace('level', '')) + 1;
             const nextLevelName = `level${nextLevelNum}`;
 
-            // Verifica se o próximo nível existe nesta categoria
             if (quizData[currentCategory] && quizData[currentCategory][nextLevelName]) {
-                // Marca o próximo nível como 'available' (disponível), se ainda não for 'completed'
-                // Isto permite que ele seja jogado.
                 saveProgress(currentCategory, nextLevelName, 'available');
                 unlockedNextLevel = true;
-                console.log(`Nível ${nextLevelName} da categoria ${currentCategory} desbloqueado como 'available'!`);
             }
-        } else {
-            // Se a porcentagem não foi atingida, o nível atual não é marcado como 'completed',
-            // mas permanece com o status que tinha (ex: 'available' ou 'unlocked').
-            console.log(`Nível ${currentLevel} da categoria ${currentCategory} concluído com ${percentageCorrect.toFixed(2)}% de acerto. Próximo nível não desbloqueado.`);
         }
 
-
-        // NOVO FLUXO: Redirecionamento e Pop-ups com base no resultado
         if (unlockedNextLevel) {
-            // Se desbloqueou um nível, mostra pop-up de sucesso e volta para a seleção de níveis
             alert(`Parabéns! Você desbloqueou o Nível ${parseInt(currentLevel.replace('level', '')) + 1} com ${percentageCorrect.toFixed(2)}% de acertos! 🎉`);
-            showScreen(levelSelectionScreen); // Volta para a tela de seleção de níveis
-            levelCategoryTitle.textContent = `${levelCategoryTitle.textContent.split(' - ')[0]}`; // Reseta o título para só a categoria
-            loadLevelsForCategory(currentCategory); // Recarrega os botões de nível para mostrar o desbloqueado
+            showScreen(levelSelectionScreen);
+            levelCategoryTitle.textContent = `${levelCategoryTitle.textContent.split(' - ')[0]}`;
+            loadLevelsForCategory(currentCategory);
         } else {
-            // Se NÃO desbloqueou um nível, mostra pop-up de insuficiência e volta para a seleção de níveis
             let message = '';
             if (score === 0) {
                  message = `Oops! Você não acertou nenhuma pergunta neste nível. Tente novamente! 😔`;
             } else if (percentageCorrect < UNLOCK_PERCENTAGE) {
                 message = `Você acertou ${percentageCorrect.toFixed(2)}% das perguntas. Para desbloquear o próximo nível, você precisa de ${UNLOCK_PERCENTAGE}% de acertos. Continue praticando! 💪`;
             } else {
-                // Este caso seria para quando a porcentagem é alta, mas não desbloqueia porque não há próximo nível.
-                // Isso pode acontecer se o jogador já completou todos os níveis da categoria.
                 message = `Você concluiu o nível com ${percentageCorrect.toFixed(2)}% de acertos. Muito bem! Não há mais níveis para desbloquear nesta categoria. 👍`;
             }
 
-            alert(message); // Exibe o pop-up com a mensagem apropriada
-            showScreen(levelSelectionScreen); // Volta para a tela de seleção de níveis
-            levelCategoryTitle.textContent = `${levelCategoryTitle.textContent.split(' - ')[0]}`; // Reseta o título
-            loadLevelsForCategory(currentCategory); // Recarrega os botões de nível
+            alert(message);
+            showScreen(levelSelectionScreen);
+            levelCategoryTitle.textContent = `${levelCategoryTitle.textContent.split(' - ')[0]}`;
+            loadLevelsForCategory(currentCategory);
         }
-
-        // A seção que exibia detalhes do quiz na resultScreen foi removida aqui,
-        // pois o quiz agora sempre retorna para a tela de seleção de níveis após o pop-up.
-        // Se desejar ter a tela de resultados detalhada APÓS o pop-up, o fluxo precisaria ser repensado.
-        // Por enquanto, o pop-up serve como o feedback principal.
     }
 
     // --- Funções para Salvar e Exibir Histórico e Progresso ---
     function saveQuizResult(category, level, score, totalQuestions, sessionResults) {
-        // Tenta buscar o histórico existente ou inicializa um array vazio
         const history = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
         const date = new Date();
         const newResult = {
-            id: Date.now(), // ID único para cada entrada de histórico (timestamp)
-            timestamp: date.toLocaleString('pt-AO'), // Data e hora do quiz, formatado para Angola
-            participant: participantName, // Inclui o nome do participante
+            id: Date.now(),
+            timestamp: date.toLocaleString('pt-AO'),
+            participant: participantName,
             category: category,
             level: level,
             score: score,
             totalQuestions: totalQuestions,
-            questionsAnswered: sessionResults // Detalhes das perguntas e respostas
+            questionsAnswered: sessionResults
         };
         history.push(newResult);
         localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(history));
@@ -587,21 +571,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayHistory() {
         const history = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
-        historyList.innerHTML = ''; // Limpa a lista antes de preencher
+        historyList.innerHTML = '';
 
         if (history.length === 0) {
             historyList.innerHTML = '<p>Nenhum quiz jogado ainda.</p>';
-            clearHistoryButton.classList.add('hidden'); // Oculta o botão se não houver histórico
+            clearHistoryButton.classList.add('hidden');
         } else {
-            clearHistoryButton.classList.remove('hidden'); // Mostra o botão se houver histórico
-            // Exibir os resultados mais recentes primeiro
+            clearHistoryButton.classList.remove('hidden');
             history.reverse().forEach(result => {
                 const itemDiv = document.createElement('div');
                 itemDiv.classList.add('history-item');
+
+                let formattedCategory = result.category;
+                if (formattedCategory === 'misturaTudo') { // ALTERADO: Adicionado para "misturaTudo"
+                    formattedCategory = 'Mistura Tudo';
+                } else {
+                    formattedCategory = formattedCategory.replace('Mode', ' Modo')
+                                                        .replace(/([A-Z])/g, ' $1')
+                                                        .trim()
+                                                        .replace('General Culture', 'Cultura Geral');
+                }
+
                 itemDiv.innerHTML = `
                     <p class="history-date">${result.timestamp}</p>
                     <p><strong>Participante:</strong> ${result.participant || 'Anônimo'}</p>
-                    <p><strong>Categoria:</strong> ${result.category.replace('Mode', ' Modo').replace(/([A-Z])/g, ' $1').trim().replace('General Culture', 'Cultura Geral')}</p>
+                    <p><strong>Categoria:</strong> ${formattedCategory}</p>
                     <p><strong>Nível:</strong> ${result.level.replace('level', '')}</p>
                     <p class="history-score">Pontuação: ${result.score} / ${result.totalQuestions}</p>
                     <details>
@@ -627,13 +621,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (confirm("Tem certeza que deseja limpar todo o histórico de quizzes?")) {
             localStorage.removeItem(HISTORY_STORAGE_KEY);
             localStorage.removeItem(PROGRESS_STORAGE_KEY); // Limpa também o progresso ao limpar o histórico
-            displayHistory(); // Atualiza a exibição para mostrar que está vazio
+            displayHistory();
             alert("Histórico de quizzes e progresso limpos com sucesso!");
         }
     });
 
     // Funções para salvar e obter progresso de níveis
-    // status pode ser 'available' (desbloqueado/pode ser jogado) ou 'completed' (jogou e atingiu 80%+)
     function saveProgress(category, level, status = 'available') {
         let progress = JSON.parse(localStorage.getItem(PROGRESS_STORAGE_KEY) || '{}');
 
@@ -641,8 +634,6 @@ document.addEventListener('DOMContentLoaded', () => {
             progress[category] = {};
         }
 
-        // Atualiza o status apenas se o novo status for 'completed' ou se o status atual não for 'completed'.
-        // Isso evita que um nível que já está marcado como 'completed' seja rebaixado para 'available'.
         if (status === 'completed' || progress[category][level] !== 'completed') {
             progress[category][level] = status;
         }
@@ -669,11 +660,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadXmlButton = document.getElementById('loadXmlButton');
     const xmlFeedback = document.getElementById('xmlFeedback');
 
-    if (loadXmlButton) { // Garante que o elemento exista antes de adicionar o listener
+    if (loadXmlButton) {
         loadXmlButton.addEventListener('click', () => {
             if (xmlFileInput.files.length > 0) {
                 const file = xmlFileInput.files[0];
                 const reader = new FileReader();
+
+                showLoading();
 
                 reader.onload = (e) => {
                     try {
@@ -684,29 +677,31 @@ document.addEventListener('DOMContentLoaded', () => {
                             xmlFeedback.textContent = "Perguntas carregadas com sucesso do arquivo selecionado!";
                             xmlFeedback.style.color = "#28a745";
                             console.log("Dados do Quiz carregados do upload:", quizData);
-                            // Após carregar um novo XML, pode ser bom redefinir o progresso para evitar inconsistências
-                            // localStorage.removeItem(PROGRESS_STORAGE_KEY); // Opcional, depende do que você quer
                             setTimeout(() => {
                                 showScreen(mainScreen);
+                                hideLoading();
                             }, 2000);
                         } else {
                             xmlFeedback.textContent = "Erro: Nenhum dado de quiz válido encontrado no arquivo selecionado.";
                             xmlFeedback.style.color = "#dc3545";
+                            hideLoading();
                         }
 
                     } catch (error) {
                         xmlFeedback.textContent = "Erro ao processar o arquivo XML. Verifique a estrutura: " + error.message;
                         xmlFeedback.style.color = "#dc3545";
                         console.error("Erro ao processar XML do upload:", error);
+                        hideLoading();
                     }
                 };
 
                 reader.onerror = () => {
                     xmlFeedback.textContent = "Erro ao carregar o arquivo.";
                     xmlFeedback.style.color = "#dc3545";
+                    hideLoading();
                 };
 
-                reader.readAsText(file); // Lê o arquivo como texto
+                reader.readAsText(file);
             } else {
                 xmlFeedback.textContent = "Por favor, selecione um arquivo XML.";
                 xmlFeedback.style.color = "#dc3545";
@@ -720,7 +715,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const xmlDoc = parser.parseFromString(xmlString, "application/xml");
         const parsedData = {};
 
-        // 1. Verifica erros de parsing XML (sintaxe básica)
         if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
             const error = xmlDoc.getElementsByTagName("parsererror")[0];
             const errorText = error ? error.textContent : "Erro desconhecido no XML.";
@@ -737,14 +731,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!categoryName || categoryName.trim() === '') {
                 throw new Error("Erro de validação: Uma tag <category> não possui o atributo 'name' ou está vazio.");
             }
-            // Opcional: Você pode adicionar um atributo 'displayName' para o nome da categoria na UI
-            // const displayName = categoryNode.getAttribute('displayName') || categoryName.replace('Mode', ' Modo').replace(/([A-Z])/g, ' $1').trim().replace('General Culture', 'Cultura Geral');
             parsedData[categoryName] = {};
 
             const levels = categoryNode.getElementsByTagName('level');
             if (levels.length === 0) {
                 console.warn(`Aviso: Nenhuma tag <level> encontrada para a categoria '${categoryName}'.`);
-                continue; // Permite categoria sem níveis, mas com aviso
+                continue;
             }
 
             for (const levelNode of levels) {
@@ -757,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const questions = levelNode.getElementsByTagName('question');
                 if (questions.length === 0) {
                     console.warn(`Aviso: Nenhuma tag <question> encontrada para o nível '${levelName}' da categoria '${categoryName}'.`);
-                    continue; // Permite nível sem perguntas, mas com aviso
+                    continue;
                 }
 
                 for (const questionNode of questions) {
@@ -770,7 +762,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const options = [];
                     const optionNodes = questionNode.getElementsByTagName('option');
-                    if (optionNodes.length < 2) { // Validação: Mínimo de 2 opções
+                    if (optionNodes.length < 2) {
                         throw new Error(`Erro de validação: Pergunta "${questionText}" no nível '${levelName}' precisa de no mínimo 2 opções.`);
                     }
 
@@ -806,6 +798,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FUNÇÃO PARA CARREGAR XML PADRÃO DO QUIZ ---
     async function loadDefaultQuizData() {
+        showLoading();
         try {
             const response = await fetch(defaultXmlPath);
             if (!response.ok) {
@@ -816,6 +809,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("Perguntas padrão do quiz carregadas com sucesso!");
         } catch (error) {
             console.error("Não foi possível carregar as perguntas padrão do quiz:", error);
+        } finally {
+            hideLoading();
         }
     }
 
@@ -830,7 +825,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(xmlString, "application/xml");
 
-            // Validação básica do XML de boas-vindas
             if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
                 throw new Error("Erro de sintaxe no XML de boas-vindas. Verifique a estrutura.");
             }
@@ -838,16 +832,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const welcomeInfoNode = xmlDoc.getElementsByTagName('welcomeInfo')[0];
             if (!welcomeInfoNode) throw new Error("Tag <welcomeInfo> não encontrada no XML de boas-vindas.");
 
-            // LOGO AGORA É CARREGADO DIRETAMENTE NO HTML (NÃO VIA XML)
-            // Preencher título e descrição principal (validação de conteúdo vazio)
             welcomeTitle.textContent = welcomeInfoNode.getElementsByTagName('title')[0]?.textContent?.trim() || '';
             if (!welcomeTitle.textContent) console.warn("Aviso: Título principal vazio no welcome_info.xml.");
 
             welcomeDescription.textContent = welcomeInfoNode.getElementsByTagName('description')[0]?.textContent?.trim() || '';
             if (!welcomeDescription.textContent) console.warn("Aviso: Descrição principal vazia no welcome_info.xml.");
 
-
-            // Preencher Quem Somos
             const whoAreWeNode = welcomeInfoNode.getElementsByTagName('whoAreWe')[0];
             if (whoAreWeNode) {
                 whoAreWeTitle.textContent = whoAreWeNode.getElementsByTagName('title')[0]?.textContent?.trim() || '';
@@ -857,8 +847,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn("Aviso: Seção 'Quem Somos' não encontrada no welcome_info.xml.");
             }
 
-
-            // Preencher Localização
             const locationNode = welcomeInfoNode.getElementsByTagName('location')[0];
             if (locationNode) {
                 locationTitle.textContent = locationNode.getElementsByTagName('title')[0]?.textContent?.trim() || '';
@@ -868,8 +856,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn("Aviso: Seção 'Localização' não encontrada no welcome_info.xml.");
             }
 
-
-            // Preencher Contactos
             const contactsNode = welcomeInfoNode.getElementsByTagName('contacts')[0];
             if (contactsNode) {
                 contactsTitle.textContent = contactsNode.getElementsByTagName('title')[0]?.textContent?.trim() || '';
@@ -892,7 +878,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn("Aviso: Seção 'Contactos' não encontrada no welcome_info.xml.");
             }
 
-
             console.log("Informações de boas-vindas carregadas com sucesso!");
 
         } catch (error) {
@@ -901,6 +886,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Chamadas Iniciais ao carregar a página ---
-    loadWelcomeInfo(); // Carrega as informações da tela de boas-vindas ao iniciar
+    loadWelcomeInfo();
 
 });
