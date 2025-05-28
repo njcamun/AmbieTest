@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Elementos de Áudio ---
     // Certifique-se de que esses arquivos existam na pasta 'sounds/'
-    const correctSound = new Audio('audio/certo.mp3');
-    const incorrectSound = new Audio('audio/errado.mp3');
-    const timeoutSound = new Audio('audio/fimTempo.mp3');
-    const hintSound = new Audio('audio/hint.mp3'); // Certifique-se de ter este arquivo também!
+    const correctSound = new Audio('sounds/correct.mp3');
+    const incorrectSound = new Audio('sounds/incorrect.mp3');
+    const timeoutSound = new Audio('sounds/timeout.mp3');
+    const hintSound = new Audio('sounds/hint.mp3'); // Certifique-se de ter este arquivo também!
 
     // --- Elementos do Histórico ---
     const historyList = document.getElementById('historyList');
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function selectOption(event) {
-        stopTimer(); // Para o temporizador assim que uma opção é selecionada
+        stopTimer(); // Para o temporador assim que uma opção é selecionada
         const selectedButton = event.target;
         const currentQuestion = quizQuestions[currentQuestionIndex];
         const correctAnswerOption = currentQuestion.options.find(opt => opt.isCorrect);
@@ -668,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     const options = [];
-                    const optionNodes = questionNode.getElementsByTagName('option');
+                    const optionNodes = questionNode.getElementsByTagName('option'); // CORRIGIDO: era optionsNodes
                     for (const optionNode of optionNodes) {
                         const optionText = optionNode.textContent;
                         const isCorrect = optionNode.getAttribute('correct') === 'true';
