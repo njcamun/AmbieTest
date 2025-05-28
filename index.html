@@ -10,6 +10,9 @@
     <section id="welcomeScreen" class="screen active">
         <div class="welcome-container">
             <img src="images/logo.jpg" alt="Logo do Quiz" class="logo">
+			<div class="name-input-container">
+                <input type="text" id="participantName" placeholder="Ola, digite seu nome" required minlength="4" maxlength="25">
+            </div>
             <h1>Bem-vindo ao Caminho do Conhecimento!</h1>
             <p>
                 Este quiz foi desenvolvido para testar e expandir seu conhecimento em diversas áreas. Prepare-se para um desafio divertido e educativo!
@@ -108,6 +111,7 @@
                 </div>
                 <p class="question-counter">Pergunta <span id="currentQuestionNum">1</span> de <span id="totalQuestionsNum">15</span></p>
                 <h3 id="questionText"></h3>
+				<button id="hintButton" class="btn secondary-btn hint-btn">💡 Dica (-5 Pontos)</button>
                 <div id="optionsContainer" class="options-container">
                     </div>
                 <button id="nextQuestionButton" class="btn primary-btn hidden">Próxima Pergunta</button>
@@ -123,6 +127,10 @@
             <h1>Resultado do Quiz</h1>
             <p>Sua pontuação final: <span id="finalScore">0</span> de <span id="maxScore">0</span></p>
             <p id="resultMessage"></p>
+
+            <div id="quizDetails" class="quiz-details">
+                <h2>Detalhes das Respostas:</h2>
+                </div>
             <button id="playAgainButton" class="btn primary-btn">Jogar Novamente</button>
             <button id="backToMainFromResults" class="btn secondary-btn">Voltar ao Menu Principal</button>
         </div>
@@ -131,7 +139,12 @@
     <section id="historyScreen" class="screen hidden">
         <div class="content-container">
             <h1>Histórico de Atividade</h1>
-            <p>Em breve, seu histórico de quizzes estará disponível aqui.</p>
+            <p>Acompanhe seu progresso e resultados nos quizzes.</p>
+
+            <div id="quizHistoryContainer" class="quiz-history-container">
+                <p>Nenhum quiz jogado ainda. Jogue um quiz para ver seu histórico!</p>
+            </div>
+            <button id="clearHistoryButton" class="btn secondary-btn" style="margin-top: 20px;">Limpar Histórico</button>
             <button id="backToMainMenuFromHistory" class="btn secondary-btn">Voltar ao Menu Principal</button>
         </div>
     </section>

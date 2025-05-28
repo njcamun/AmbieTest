@@ -537,3 +537,218 @@ a:hover {
         padding: 6px 10px;
     }
 }
+
+/* Estilos para o Botão de Dica */
+.hint-btn {
+    background-color: #8D99AE; /* Um cinza azulado neutro */
+    color: var(--white);
+    border-bottom: 4px solid #6D7B8C;
+    margin-top: 15px; /* Espaçamento da pergunta */
+    margin-bottom: 25px; /* Espaçamento das opções */
+    font-size: 1.1em;
+    padding: 10px 20px;
+}
+
+.hint-btn:hover {
+    background-color: #A0ACB9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+}
+
+.hint-btn:active {
+    transform: translateY(2px);
+    border-bottom: 2px solid #6D7B8C;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hint-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    border-bottom: 4px solid #6D7B8C;
+}
+
+/* ... (continuação do seu CSS) ... */
+
+/* Adicione nos media queries se precisar de ajustes */
+@media (max-width: 768px) {
+    /* ... */
+    .hint-btn {
+        font-size: 1em;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* ... */
+    .hint-btn {
+        font-size: 0.9em;
+        padding: 6px 12px;
+        width: 100%; /* Ocupa a largura total em telas muito pequenas */
+    }
+}
+
+/* Estilos para a Seção de Detalhes do Quiz na Tela de Resultado */
+.quiz-details {
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    margin-top: 30px;
+    text-align: left;
+    max-height: 300px; /* Limita a altura para que não fique muito longa */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito longo */
+    border: 2px dashed var(--secondary-color);
+}
+
+.quiz-details h2 {
+    color: var(--dark-blue);
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.question-detail {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.question-detail:last-child {
+    border-bottom: none; /* Sem borda na última pergunta */
+}
+
+.question-detail p {
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 1em;
+    color: var(--dark-blue);
+}
+
+.question-detail .user-answer {
+    font-weight: bold;
+    color: #3498db; /* Azul para a resposta do usuário */
+}
+
+.question-detail .correct-answer-text {
+    font-weight: bold;
+    color: #28a745; /* Verde para a resposta correta */
+}
+
+.question-detail.incorrect .user-answer {
+    color: #dc3545; /* Vermelho para a resposta errada */
+}
+
+/* ... (Seu CSS existente) ... */
+
+/* Estilos para o Histórico de Quizzes */
+.quiz-history-container {
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    margin-top: 20px;
+    text-align: left;
+    max-height: 400px; /* Limita a altura para scroll */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito longo */
+    border: 2px dashed var(--accent-color);
+}
+
+.quiz-history-container p {
+    text-align: center; /* Centraliza a mensagem de "nenhum quiz jogado" */
+    color: var(--dark-blue);
+}
+
+.history-item {
+    background-color: var(--white);
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-md);
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.history-item strong {
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+.history-item span {
+    font-weight: normal;
+    color: var(--dark-blue);
+}
+
+.history-item .score-display {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2em;
+    color: var(--secondary-color);
+    text-align: right;
+}
+
+/* Estilo para o botão Limpar Histórico */
+#clearHistoryButton {
+    background-color: #dc3545; /* Vermelho para ação de limpar/deletar */
+    border-bottom: 4px solid #b02a37;
+    margin-top: 20px; /* Espaçamento adicional */
+}
+
+#clearHistoryButton:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+#clearHistoryButton:active {
+    transform: translateY(2px);
+    border-bottom: 2px solid #b02a37;
+}
+
+/* ... (Seu CSS existente, até o final) ... */
+
+/* Estilos para o campo de nome */
+.name-input-container {
+    margin-bottom: 20px;
+    width: 80%; /* Para não ser muito largo em telas grandes */
+    max-width: 300px; /* Limite de largura */
+    text-align: left;
+}
+
+.name-input-container label {
+    display: block; /* Garante que o label fique acima do input */
+    font-family: 'Fredoka One', cursive;
+    color: var(--dark-blue);
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.name-input-container input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--border-radius-md);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    color: var(--dark-blue);
+    background-color: var(--light-gray);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra interna para profundidade */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.name-input-container input[type="text"]::placeholder {
+    color: #999;
+}
+
+.name-input-container input[type="text"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3); /* Um "brilho" ao focar */
+    outline: none;
+}
+
+/* Adicione nos media queries se precisar de ajustes */
+@media (max-width: 480px) {
+    .name-input-container {
+        width: 95%; /* Ocupa mais largura em celulares */
+        max-width: none;
+    }
+}
