@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Quiz Sabedoria">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caminho da Sabedoria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados para a fonte Inter e o corpo geral */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Esconder páginas por padrão, apenas a página ativa será mostrada via JS */
+        .page-content {
+            display: none;
+        }
+        .page-content.active {
+            display: flex; /* Ou block, dependendo do layout interno */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-200 flex flex-col items-center justify-center p-4 text-gray-800">
+
+    <h1 class="text-4xl font-bold text-indigo-800 mb-8 text-center drop-shadow-lg">
+        O Caminho da Sabedoria
+    </h1>
+
+    <div class="mb-8">
+        <img src="D:\HTML\logo.png" alt="Logotipo do Quiz" class="h-30 w-30 object-contain mx-auto rounded-full shadow-lg border-4 border-white">
+        </div>
+    
+    <div id="homepage" class="page-content active w-full max-w-lg bg-white rounded-xl shadow-2xl p-8 mb-8">
+        <h2 class="text-2xl font-bold text-indigo-800 mb-6 text-center">Menu Principal</h2>
+        <div class="flex flex-col gap-6 w-full">
+            <button
+                onclick="showPage('play-page')"
+                class="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-xl rounded-full shadow-lg
+                hover:from-blue-600 hover:to-purple-700 transition-all duration-300 ease-in-out
+                transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-75"
+            >
+                🎮 Jogar Quiz
+            </button>
+            <button
+                onclick="showPage('update-page')"
+                class="w-full px-8 py-4 bg-gradient-to-r from-green-500 to-teal-600 text-white font-bold text-xl rounded-full shadow-lg
+                hover:from-green-600 hover:to-teal-700 transition-all duration-300 ease-in-out
+                transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75"
+            >
+                ⬆️ Atualizar Perguntas (XML)
+            </button>
+            <button
+                onclick="showPage('results-page')"
+                class="w-full px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold text-xl rounded-full shadow-lg
+                hover:from-orange-600 hover:to-red-700 transition-all duration-300 ease-in-out
+                transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-opacity-75"
+            >
+                🏆 Ver Resultados
+            </button>
+        </div>
+    </div>
+
+    <div id="play-page" class="page-content w-full max-w-lg bg-white rounded-xl shadow-2xl p-8 mb-8">
+        <h2 class="text-2xl font-bold text-indigo-800 mb-6 text-center">Quiz de Conhecimentos Gerais</h2>
+        
+        <div id="player-name-section" class="mb-6">
+            <label for="player-name" class="block text-gray-700 text-sm font-bold mb-2">Seu Nome (opcional):</label>
+            <input type="text" id="player-name" placeholder="Digite seu nome para o histórico"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div id="quiz-progress" class="text-sm text-gray-600 text-center mb-2">
+            </div>
+        
+        <div id="question-category" class="text-md font-semibold text-purple-700 text-center mb-4">
+            </div>
+
+        <div id="question-display">
+            <p id="question-text" class="text-xl font-semibold text-gray-800 mb-6"></p>
+            <div id="options-container" class="flex flex-col gap-4">
+            </div>
+        </div>
+
+        <button
+            id="submit-answer-btn"
+            class="mt-8 w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-full shadow-lg
+            hover:from-blue-600 hover:to-purple-700 transition-all duration-300 ease-in-out
+            transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-75"
+        >
+            Verificar Resposta
+        </button>
+
+        <div id="result-display" class="mt-6 text-center text-lg font-semibold">
+        </div>
+
+        <button
+            id="next-question-btn"
+            class="mt-4 w-full px-6 py-3 bg-gradient-to-r from-green-400 to-teal-500 text-white font-bold rounded-full shadow-lg
+            hover:from-green-500 hover:to-teal-600 transition-all duration-300 ease-in-out
+            transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75 hidden"
+        >
+            Próxima Pergunta
+        </button>
+
+        <button
+            id="save-quiz-history-btn"
+            class="mt-4 w-full px-6 py-3 bg-gradient-to-r from-pink-500 to-red-600 text-white font-bold rounded-full shadow-lg
+            hover:from-pink-600 hover:to-red-700 transition-all duration-300 ease-in-out
+            transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-opacity-75 hidden"
+        >
+            Salvar Histórico do Jogo (XML)
+        </button>
+
+        <button
+            onclick="showPage('homepage'); resetQuiz();"
+            class="mt-4 w-full px-6 py-3 bg-gray-400 text-white font-bold rounded-full shadow-lg
+            hover:bg-gray-500 transition-all duration-300 ease-in-out
+            transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-75"
+        >
+            Voltar ao Menu
+        </button>
+    </div>
+
+    <div id="update-page" class="page-content w-full max-w-lg bg-white rounded-xl shadow-2xl p-8 mb-8">
+        <h2 class="text-2xl font-bold text-indigo-800 mb-6 text-center">Carregar Perguntas via XML</h2>
+        <div class="flex flex-col gap-4">
+            <label for="xml-file-input" class="text-gray-700 font-medium">Selecione um arquivo XML com as perguntas:</label>
+            <input type="file" id="xml-file-input" accept=".xml"
+                   class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+
+            <button
+                id="upload-xml-btn"
+                class="w-full px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-bold rounded-full shadow-lg
+                hover:from-purple-600 hover:to-pink-700 transition-all duration-300 ease-in-out
+                transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:ring-opacity-75"
+            >
+                Carregar Perguntas do XML
+            </button>
+            <div id="xml-upload-message" class="text-center text-sm mt-2"></div>
+        </div>
+        <p class="text-sm text-gray-500 mt-4 text-center">
+            Formato XML esperado para as perguntas:
+            <pre class="bg-gray-100 p-2 rounded-lg text-xs mt-2 overflow-auto"><code>&lt;quiz&gt;
+  &lt;question&gt;
+    &lt;text&gt;Texto da pergunta?&lt;/text&gt;
+    &lt;option&gt;Opção 1&lt;/option&gt;
+    &lt;option&gt;Opção 2&lt;/option&gt;
+    &lt;option&gt;Opção 3&lt;/option&gt;
+    &lt;option&gt;Opção 4&lt;/option&gt;
+    &lt;correctAnswer&gt;Opção 2&lt;/correctAnswer&gt;
+    &lt;category&gt;Categoria da Pergunta&lt;/category&gt; &lt;!-- NOVO --&gt;
+  &lt;/question&gt;
+  &lt;!-- Mais perguntas aqui --&gt;
+&lt;/quiz&gt;</code></pre>
+        </p>
+        <button
+            onclick="showPage('homepage')"
+            class="mt-4 w-full px-6 py-3 bg-gray-400 text-white font-bold rounded-full shadow-lg
+            hover:bg-gray-500 transition-all duration-300 ease-in-out
+            transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-75"
+        >
+            Voltar ao Menu
+        </button>
+    </div>
+
+    <div id="results-page" class="page-content w-full max-w-lg bg-white rounded-xl shadow-2xl p-8 mb-8">
+        <h2 class="text-2xl font-bold text-indigo-800 mb-6 text-center">Histórico de Jogos</h2>
+        <div class="flex flex-col gap-4 mb-4">
+            <label for="history-xml-file-input" class="text-gray-700 font-medium">Carregar histórico de um arquivo XML:</label>
+            <input type="file" id="history-xml-file-input" accept=".xml"
+                   class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            <button
+                id="load-history-xml-btn"
+                class="w-full px-6 py-3 bg-gradient-to-r from-blue-400 to-purple-500 text-white font-bold rounded-full shadow-lg
+                hover:from-blue-500 hover:to-purple-600 transition-all duration-300 ease-in-out
+                transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-75"
+            >
+                Carregar Histórico (XML)
+            </button>
+            <div id="history-upload-message" class="text-center text-sm mt-2"></div>
+        </div>
+
+        <div id="results-list" class="flex flex-col gap-3">
+            <p class="text-gray-600 text-center" id="no-results-message">Nenhum resultado de jogo encontrado ainda.</p>
+            </div>
+
+        <button
+            id="download-history-btn"
+            class="mt-8 w-full px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-full shadow-lg
+            hover:from-orange-600 hover:to-red-700 transition-all duration-300 ease-in-out
+            transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-opacity-75"
+        >
+            Baixar Histórico (XML)
+        </button>
+
+        <button
+            onclick="showPage('homepage')"
+            class="mt-4 w-full px-6 py-3 bg-gray-400 text-white font-bold rounded-full shadow-lg
+            hover:bg-gray-500 transition-all duration-300 ease-in-out
+            transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-75"
+        >
+            Voltar ao Menu
+        </button>
+    </div>
+
+    <audio id="correct-sound" src="D:\HTML\certo.mp3" preload="auto"></audio>
+    <audio id="wrong-sound" src="D:\HTML\errado.mp3" preload="auto"></audio>
+
+    <script>
+        // Dados do quiz: perguntas, opções e resposta correta
+        let quizData = [
+            {
+                question: "Qual é a capital de Portugal?",
+                options: ["Porto", "Lisboa", "Coimbra", "Faro"],
+                correctAnswer: "Lisboa",
+                category: "Geografia"
+            },
+            {
+                question: "Quem pintou a Mona Lisa?",
+                options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"],
+                correctAnswer: "Leonardo da Vinci",
+                category: "Arte"
+            },
+            {
+                question: "Qual é o maior oceano do mundo?",
+                options: ["Oceano Atlântico", "Oceano Índico", "Oceano Ártico", "Oceano Pacífico"],
+                correctAnswer: "Oceano Pacífico",
+                category: "Geografia"
+            },
+            {
+                question: "Qual é o elemento químico com o símbolo 'O'?",
+                options: ["Ouro", "Oxigénio", "Ósmio", "Ópio"],
+                correctAnswer: "Oxigénio",
+                category: "Ciência"
+            },
+            {
+                question: "Quantos planetas existem no nosso sistema solar?",
+                options: ["7", "8", "9", "10"],
+                correctAnswer: "8",
+                category: "Ciência"
+            }
+        ];
+
+        // Histórico de resultados do quiz (armazenado em memória)
+        let quizResultsHistory = [];
+
+        let currentQuestionIndex = 0;
+        let selectedOption = null;
+        let correctAnswersCount = 0; // Para rastrear a pontuação
+
+        // Obter elementos do DOM para o quiz
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const submitAnswerBtn = document.getElementById('submit-answer-btn');
+        const resultDisplay = document.getElementById('result-display');
+        const nextQuestionBtn = document.getElementById('next-question-btn');
+        const playerNameInput = document.getElementById('player-name'); 
+        const saveQuizHistoryBtn = document.getElementById('save-quiz-history-btn'); 
+        const quizProgressDisplay = document.getElementById('quiz-progress'); 
+        const questionCategoryDisplay = document.getElementById('question-category'); // NOVO ELEMENTO
+
+
+        // Elementos de áudio
+        const correctSound = document.getElementById('correct-sound');
+        const wrongSound = document.getElementById('wrong-sound');
+
+
+        // Obter elementos do DOM para upload de XML de perguntas
+        const xmlFileInput = document.getElementById('xml-file-input');
+        const uploadXmlBtn = document.getElementById('upload-xml-btn');
+        const xmlUploadMessage = document.getElementById('xml-upload-message');
+
+        // Obter elementos do DOM para a página de resultados e upload/download de histórico
+        const resultsList = document.getElementById('results-list');
+        const noResultsMessage = document.getElementById('no-results-message');
+        const historyXmlFileInput = document.getElementById('history-xml-file-input');
+        const loadHistoryXmlBtn = document.getElementById('load-history-xml-btn');
+        const historyUploadMessage = document.getElementById('history-upload-message');
+        const downloadHistoryBtn = document.getElementById('download-history-btn');
+
+
+        /**
+         * Função para mostrar uma página específica e esconder as outras.
+         * @param {string} pageId O ID da página a ser mostrada.
+         */
+        window.showPage = (pageId) => {
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+
+            if (pageId === 'results-page') {
+                renderQuizResults(); // Renderiza os resultados ao entrar na página
+            } else if (pageId === 'play-page') {
+                resetQuiz(); // Garante que o quiz é carregado corretamente ao entrar na página de jogo
+                playerNameInput.value = ''; // Limpa o nome do jogador ao iniciar um novo quiz
+                saveQuizHistoryBtn.classList.add('hidden'); // Esconde o botão salvar histórico ao iniciar
+            }
+        };
+
+        /**
+         * Atualiza o texto do indicador de progresso do quiz.
+         */
+        const updateQuizProgress = () => {
+            if (quizData.length === 0) {
+                quizProgressDisplay.textContent = 'Carregue perguntas para começar!';
+                questionCategoryDisplay.textContent = ''; // Limpa a categoria também
+                return;
+            }
+            const perguntasRespondidas = currentQuestionIndex;
+            const totalPerguntas = quizData.length;
+            const perguntasFaltantes = totalPerguntas - perguntasRespondidas;
+
+            // Ajuste para a mensagem de "faltam" no final do quiz
+            let faltamTexto = `faltam ${perguntasFaltantes}`;
+            if (perguntasFaltantes === 0) {
+                faltamTexto = ''; // Não mostra "faltam 0"
+            } else if (perguntasRespondidas === 0 && totalPerguntas > 0) { // Se ainda não respondeu nenhuma
+                 faltamTexto = `faltam ${totalPerguntas - 1}`;
+            } else {
+                faltamTexto = `faltam ${perguntasFaltantes}`;
+            }
+
+            quizProgressDisplay.textContent = `Pergunta ${perguntasRespondidas + 1} de ${totalPerguntas} (${faltamTexto})`;
+            
+            // Corrige o texto final quando o quiz termina
+            if (currentQuestionIndex === totalPerguntas) {
+                 quizProgressDisplay.textContent = `Quiz Finalizado!`;
+                 questionCategoryDisplay.textContent = ''; // Limpa a categoria no final
+            } else {
+                // Exibe a categoria da pergunta atual
+                questionCategoryDisplay.textContent = `Categoria: ${quizData[currentQuestionIndex].category || 'Geral'}`;
+            }
+        };
+
+
+        /**
+         * Carrega a pergunta atual no display do quiz.
+         */
+        const loadQuestion = () => {
+            if (quizData.length === 0) {
+                questionText.textContent = 'Nenhuma pergunta disponível. Por favor, carregue um arquivo XML!';
+                optionsContainer.innerHTML = '';
+                resultDisplay.textContent = '';
+                submitAnswerBtn.classList.add('hidden');
+                nextQuestionBtn.classList.add('hidden');
+                saveQuizHistoryBtn.classList.add('hidden'); // Certifica que o botão está escondido
+                updateQuizProgress(); // Atualiza o progresso
+                return;
+            }
+
+            const currentQuestion = quizData[currentQuestionIndex];
+            questionText.textContent = currentQuestion.question;
+            optionsContainer.innerHTML = ''; // Limpa as opções anteriores
+            resultDisplay.textContent = ''; // Limpa o resultado
+            submitAnswerBtn.classList.remove('hidden'); // Mostra o botão de verificar
+            nextQuestionBtn.classList.add('hidden'); // Esconde o botão de próxima pergunta
+            saveQuizHistoryBtn.classList.add('hidden'); // Esconde o botão de salvar histórico
+            selectedOption = null; // Reinicia a opção selecionada
+
+            currentQuestion.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add(
+                    'w-full', 'px-4', 'py-3', 'bg-gray-100', 'text-gray-700', 'rounded-lg', 'shadow-md',
+                    'hover:bg-blue-100', 'hover:text-blue-700', 'transition-all', 'duration-200', 'ease-in-out',
+                    'focus:outline-none', 'focus:ring-2', 'focus:ring-blue-300', 'focus:ring-opacity-75',
+                    'text-left' // Alinha o texto à esquerda
+                );
+                button.addEventListener('click', () => selectOption(button, option));
+                optionsContainer.appendChild(button);
+            });
+
+            // Re-habilitar botões de opção se a pergunta for carregada novamente
+            document.querySelectorAll('#options-container button').forEach(btn => {
+                btn.disabled = false;
+            });
+            updateQuizProgress(); // Atualiza o progresso
+        };
+
+        /**
+         * Lida com a seleção de uma opção.
+         * @param {HTMLElement} button O botão da opção clicado.
+         * @param {string} option O texto da opção selecionada.
+         */
+        const selectOption = (button, option) => {
+            // Remove o estilo de seleção de todas as opções
+            document.querySelectorAll('#options-container button').forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white', 'font-bold');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+            });
+
+            // Adiciona o estilo de seleção à opção clicada
+            button.classList.remove('bg-gray-100', 'text-gray-700');
+            button.classList.add('bg-blue-500', 'text-white', 'font-bold');
+            selectedOption = option;
+        };
+
+        /**
+         * Verifica a resposta selecionada.
+         */
+        const checkAnswer = () => {
+            if (selectedOption === null) {
+                resultDisplay.textContent = 'Por favor, selecione uma opção!';
+                resultDisplay.classList.remove('text-green-600', 'text-red-600');
+                resultDisplay.classList.add('text-yellow-600');
+                // Não toca som para "selecione uma opção"
+                return;
+            }
+
+            const currentQuestion = quizData[currentQuestionIndex];
+            if (selectedOption === currentQuestion.correctAnswer) {
+                resultDisplay.textContent = 'Correto! 🎉';
+                resultDisplay.classList.remove('text-red-600', 'text-yellow-600');
+                resultDisplay.classList.add('text-green-600');
+                correctAnswersCount++; // Incrementa a contagem de respostas corretas
+                correctSound.play(); // Toca som de resposta certa
+            } else {
+                resultDisplay.textContent = `Errado. A resposta correta é: ${currentQuestion.correctAnswer}`;
+                resultDisplay.classList.remove('text-green-600', 'text-yellow-600');
+                resultDisplay.classList.add('text-red-600');
+                wrongSound.play(); // Toca som de resposta errada
+            }
+
+            submitAnswerBtn.classList.add('hidden'); // Esconde o botão de verificar
+            nextQuestionBtn.classList.remove('hidden'); // Mostra o botão de próxima pergunta
+
+            // Desabilita todos os botões de opção após a verificação
+            document.querySelectorAll('#options-container button').forEach(btn => {
+                btn.disabled = true;
+            });
+        };
+
+        /**
+         * Salva o resultado do quiz na memória e renderiza o histórico.
+         */
+        const saveQuizResult = (score, totalQuestions) => {
+            const playerName = playerNameInput.value.trim();
+            const newResult = {
+                userId: playerName || 'Jogador Anônimo', // Usa o nome inserido ou "Jogador Anônimo"
+                date: new Date().toISOString(), // Data em formato ISO para fácil parsing em XML
+                score: `${score}/${totalQuestions}`,
+                correctAnswers: score,
+                totalQuestions: totalQuestions
+            };
+            quizResultsHistory.push(newResult);
+            // Opcional: ordenar o histórico por data (mais recente primeiro)
+            quizResultsHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+            console.log("Resultado do quiz salvo na memória:", newResult);
+        };
+
+        /**
+         * Reinicia o quiz para uma nova rodada.
+         */
+        const resetQuiz = () => {
+            currentQuestionIndex = 0;
+            correctAnswersCount = 0;
+            loadQuestion();
+            playerNameInput.value = ''; // Limpa o nome do jogador
+            saveQuizHistoryBtn.classList.add('hidden'); // Esconde o botão de salvar histórico
+            updateQuizProgress(); // Atualiza o progresso ao resetar
+        };
+
+        /**
+         * Avança para a próxima pergunta ou finaliza o quiz.
+         */
+        const nextQuestion = () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                // Quiz finalizado
+                questionText.textContent = `Quiz Finalizado! Você acertou ${correctAnswersCount} de ${quizData.length} perguntas!`;
+                optionsContainer.innerHTML = '';
+                resultDisplay.textContent = '';
+                submitAnswerBtn.classList.add('hidden');
+                nextQuestionBtn.classList.add('hidden');
+                
+                // Salvar o resultado do quiz na memória
+                saveQuizResult(correctAnswersCount, quizData.length);
+                
+                // Mostrar o botão de salvar histórico para download
+                saveQuizHistoryBtn.classList.remove('hidden'); 
+                updateQuizProgress(); // Atualiza para "Quiz Finalizado!"
+            }
+        };
+
+        /**
+         * Carrega e analisa um arquivo XML para atualizar as perguntas do quiz.
+         */
+        const loadQuestionsFromXml = () => {
+            const file = xmlFileInput.files[0];
+            if (!file) {
+                xmlUploadMessage.textContent = 'Por favor, selecione um arquivo XML.';
+                xmlUploadMessage.classList.remove('text-green-600');
+                xmlUploadMessage.classList.add('text-red-600');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const xmlString = e.target.result;
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+                    // Verificar erros de parsing XML
+                    const errorNode = xmlDoc.querySelector('parsererror');
+                    if (errorNode) {
+                        xmlUploadMessage.textContent = 'Erro ao analisar o arquivo XML. Verifique o formato.';
+                        xmlUploadMessage.classList.remove('text-green-600');
+                        xmlUploadMessage.classList.add('text-red-600');
+                        console.error('XML parsing error:', errorNode);
+                        return;
+                    }
+
+                    const newQuizData = [];
+                    const questions = xmlDoc.querySelectorAll('question');
+
+                    if (questions.length === 0) {
+                        xmlUploadMessage.textContent = 'Nenhuma pergunta encontrada no arquivo XML. Verifique o formato.';
+                        xmlUploadMessage.classList.remove('text-green-600');
+                        xmlUploadMessage.classList.add('text-red-600');
+                        return;
+                    }
+
+                    questions.forEach(qElement => {
+                        const textElement = qElement.querySelector('text');
+                        const optionElements = qElement.querySelectorAll('option');
+                        const correctAnswerElement = qElement.querySelector('correctAnswer');
+                        const categoryElement = qElement.querySelector('category'); // NOVA LINHA
+
+                        if (textElement && optionElements.length === 4 && correctAnswerElement) {
+                            const questionText = textElement.textContent.trim();
+                            const options = Array.from(optionElements).map(opt => opt.textContent.trim());
+                            const correctAnswer = correctAnswerElement.textContent.trim();
+                            const category = categoryElement ? categoryElement.textContent.trim() : 'Geral'; // NOVA LINHA
+
+                            newQuizData.push({
+                                question: questionText,
+                                options: options,
+                                correctAnswer: correctAnswer,
+                                category: category // NOVA LINHA
+                            });
+                        } else {
+                            console.warn('Pergunta ignorada devido a formato inválido:', qElement);
+                        }
+                    });
+
+                    if (newQuizData.length > 0) {
+                        quizData = newQuizData; // Substitui os dados do quiz existentes
+                        currentQuestionIndex = 0; // Reinicia o quiz
+                        correctAnswersCount = 0; // Reinicia a contagem de acertos
+                        loadQuestion();
+                        xmlUploadMessage.textContent = ` ${newQuizData.length} perguntas carregadas com sucesso!`;
+                        xmlUploadMessage.classList.remove('text-red-600');
+                        xmlUploadMessage.classList.add('text-green-600');
+                    } else {
+                        xmlUploadMessage.textContent = 'Nenhuma pergunta válida encontrada no arquivo XML.';
+                        xmlUploadMessage.classList.remove('text-green-600');
+                        xmlUploadMessage.classList.add('text-red-600');
+                    }
+
+                } catch (error) {
+                    xmlUploadMessage.textContent = 'Ocorreu um erro ao processar o arquivo.';
+                    xmlUploadMessage.classList.remove('text-green-600');
+                    xmlUploadMessage.classList.add('text-red-600');
+                    console.error('Error processing XML file:', error);
+                }
+            };
+
+            reader.onerror = () => {
+                xmlUploadMessage.textContent = 'Erro ao ler o arquivo.';
+                xmlUploadMessage.classList.remove('text-green-600');
+                xmlUploadMessage.classList.add('text-red-600');
+            };
+
+            reader.readAsText(file); // Lê o arquivo como texto
+        };
+
+        /**
+         * Renderiza os resultados do quiz na página de resultados.
+         */
+        const renderQuizResults = () => {
+            resultsList.innerHTML = ''; // Limpa a lista antes de adicionar os novos resultados
+            noResultsMessage.classList.add('hidden'); // Esconde a mensagem "nenhum resultado" por padrão
+
+            if (quizResultsHistory.length === 0) {
+                noResultsMessage.classList.remove('hidden');
+                return;
+            }
+
+            // Ordenar o histórico por data (mais recente primeiro)
+            const sortedResults = [...quizResultsHistory].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            sortedResults.forEach(result => {
+                const resultItem = document.createElement('div');
+                resultItem.classList.add('bg-gray-50', 'p-4', 'rounded-lg', 'shadow-sm', 'border', 'border-gray-200');
+                const date = new Date(result.date).toLocaleString('pt-PT');
+                resultItem.innerHTML = `
+                    <p class="font-semibold text-gray-800">Data: ${date}</p>
+                    <p class="text-gray-700">Pontuação: ${result.score}</p>
+                    <p class="text-gray-700 text-sm">Participante: ${result.userId}</p>
+                `;
+                resultsList.appendChild(resultItem);
+            });
+        };
+
+        /**
+         * Carrega o histórico de resultados de um arquivo XML.
+         */
+        const loadHistoryFromXml = () => {
+            const file = historyXmlFileInput.files[0];
+            if (!file) {
+                historyUploadMessage.textContent = 'Por favor, selecione um arquivo XML de histórico.';
+                historyUploadMessage.classList.remove('text-green-600');
+                historyUploadMessage.classList.add('text-red-600');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const xmlString = e.target.result;
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+                    const errorNode = xmlDoc.querySelector('parsererror');
+                    if (errorNode) {
+                        historyUploadMessage.textContent = 'Erro ao analisar o arquivo XML de histórico. Verifique o formato.';
+                        historyUploadMessage.classList.remove('text-green-600');
+                        historyUploadMessage.classList.add('text-red-600');
+                        console.error('XML parsing error:', errorNode);
+                        return;
+                    }
+
+                    const newHistory = [];
+                    const gameResults = xmlDoc.querySelectorAll('gameResult');
+
+                    if (gameResults.length === 0) {
+                        historyUploadMessage.textContent = 'Nenhum resultado de jogo encontrado no arquivo XML. Verifique o formato.';
+                        historyUploadMessage.classList.remove('text-green-600');
+                        historyUploadMessage.classList.add('text-red-600');
+                        return;
+                    }
+
+                    gameResults.forEach(resultElement => {
+                        const userIdEl = resultElement.querySelector('userId');
+                        const dateEl = resultElement.querySelector('date');
+                        const scoreEl = resultElement.querySelector('score');
+                        const correctAnswersEl = resultElement.querySelector('correctAnswers');
+                        const totalQuestionsEl = resultElement.querySelector('totalQuestions');
+
+                        if (userIdEl && dateEl && scoreEl && correctAnswersEl && totalQuestionsEl) {
+                            newHistory.push({
+                                userId: userIdEl.textContent.trim(),
+                                date: dateEl.textContent.trim(),
+                                score: scoreEl.textContent.trim(),
+                                correctAnswers: parseInt(correctAnswersEl.textContent.trim()),
+                                totalQuestions: parseInt(totalQuestionsEl.textContent.trim())
+                            });
+                        } else {
+                            console.warn('Resultado de jogo ignorado devido a formato inválido:', resultElement);
+                        }
+                    });
+
+                    if (newHistory.length > 0) {
+                        quizResultsHistory = newHistory; // Substitui o histórico existente
+                        renderQuizResults();
+                        historyUploadMessage.textContent = `${newHistory.length} resultados carregados com sucesso!`;
+                        historyUploadMessage.classList.remove('text-red-600');
+                        historyUploadMessage.classList.add('text-green-600');
+                    } else {
+                        historyUploadMessage.textContent = 'Nenhum resultado válido encontrado no arquivo XML.';
+                        historyUploadMessage.classList.remove('text-green-600');
+                        historyUploadMessage.classList.add('text-red-600');
+                    }
+
+                } catch (error) {
+                    historyUploadMessage.textContent = 'Ocorreu um erro ao processar o arquivo de histórico.';
+                    historyUploadMessage.classList.remove('text-green-600');
+                    historyUploadMessage.classList.add('text-red-600');
+                    console.error('Error processing history XML file:', error);
+                }
+            };
+
+            reader.onerror = () => {
+                historyUploadMessage.textContent = 'Erro ao ler o arquivo de histórico.';
+                historyUploadMessage.classList.remove('text-green-600');
+                historyUploadMessage.classList.add('text-red-600');
+            };
+
+            reader.readAsText(file);
+        };
+
+        /**
+         * Gera e baixa um arquivo XML com o histórico atual do quiz.
+         */
+        const downloadHistoryXml = () => {
+            if (quizResultsHistory.length === 0) {
+                alert('Não há histórico para baixar.'); // Usando alert temporariamente, idealmente seria um modal
+                return;
+            }
+
+            let xmlString = '<?xml version="1.0" encoding="UTF-8"?>\n<history>';
+            quizResultsHistory.forEach(result => {
+                xmlString += `
+    <gameResult>
+        <userId>${escapeXml(result.userId)}</userId>
+        <date>${escapeXml(result.date)}</date>
+        <score>${escapeXml(result.score)}</score>
+        <correctAnswers>${result.correctAnswers}</correctAnswers>
+        <totalQuestions>${result.totalQuestions}</totalQuestions>
+    </gameResult>`;
+            });
+            xmlString += '\n</history>';
+
+            const blob = new Blob([xmlString], { type: 'text/xml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'historico.xml';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        };
+
+        /**
+         * Escapa caracteres especiais para XML.
+         * @param {string} text O texto a ser escapado.
+         * @returns {string} O texto escapado.
+         */
+        function escapeXml(text) {
+            return text.replace(/&/g, '&amp;')
+                       .replace(/</g, '&lt;')
+                       .replace(/>/g, '&gt;')
+                       .replace(/"/g, '&quot;')
+                       .replace(/'/g, '&apos;');
+        }
+
+        // Adicionar listeners de evento aos botões
+        submitAnswerBtn.addEventListener('click', checkAnswer);
+        nextQuestionBtn.addEventListener('click', nextQuestion);
+        uploadXmlBtn.addEventListener('click', loadQuestionsFromXml);
+        loadHistoryXmlBtn.addEventListener('click', loadHistoryFromXml);
+        saveQuizHistoryBtn.addEventListener('click', downloadHistoryXml); 
+
+        // Carregar a primeira pergunta quando a página carregar
+        window.onload = () => {
+            loadQuestion();
+            renderQuizResults(); // Renderiza o histórico inicial (vazio ou carregado)
+        };
+    </script>
+<script>
+        // Registra o Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado com sucesso:', registration);
+                    })
+                    .catch(error => {
+                        console.error('Falha no registro do Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+    <script>
+        // ... (todo o código JavaScript do seu quiz) ...
+    </script>
+</body>
+</html>
+</body>
+</html>
