@@ -1,204 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt-ao">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz do Conhecimento</title>
-    <link rel="stylesheet" href="style.css">
-	<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<link rel="shortcut icon" href="/favicon.ico" />
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-	<link rel="manifest" href="/site.webmanifest" />
-	<link rel="manifest" href="/manifest.json">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Quiz Educlass">
-    <link rel="apple-touch-icon" href="/images/icon-192x192.png">
-	<script src="https://cdn.tailwindcss.com"></script>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="https://njcamun.github.io/Educlass/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="caminho_do_saber">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>caminho_do_saber</title>
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <main role="main">
-
-    <section id="welcomeScreen" class="screen active" role="region" aria-labelledby="welcomeTitle">
-        <div class="welcome-container">
-            <img src="assets/logo.png" alt="Logo do Quiz, um cérebro sorridente com um ponto de interrogação" class="logo">
-            <h1 id="welcomeTitle"></h1>
-            <p id="welcomeDescription"></p>
-
-            <section class="info-section" aria-labelledby="whoAreWeTitle">
-                <h2 id="whoAreWeTitle"></h2>
-                <p id="whoAreWeText"></p>
-            </section>
-
-            <section class="info-section" aria-labelledby="locationTitle">
-                <h2 id="locationTitle"></h2>
-                <p id="locationText"></p>
-            </section>
-
-            <section class="info-section" aria-labelledby="contactsTitle">
-                <h2 id="contactsTitle"></h2>
-                <p>Email: <a href="#" id="contactEmail" aria-label="Email de contato"></a></p>
-                <p>Telefone: <span id="contactPhone" aria-label="Número de telefone"></span></p>
-                <p>Redes Sociais: <span id="contactSocialMedia" aria-label="Redes sociais do quiz"></span></p>
-            </section>
-
-            <div class="name-input-container">
-                <label for="participantName">Seu Nome:</label>
-                <input type="text" id="participantName" placeholder="Digite seu nome" required minlength="2" maxlength="20" aria-required="true" aria-label="Campo para digitar o nome do participante">
-            </div>
-
-            <button id="startButton" class="btn primary-btn" aria-label="Iniciar Quiz">Iniciar Quiz</button>
-        </div>
-    </section>
-
-    <section id="mainScreen" class="screen hidden" role="region" aria-labelledby="mainMenuTitle">
-        <div class="main-container">
-            <h1 id="mainMenuTitle">Menu Principal</h1>
-            <div class="main-menu-grid">
-                <button id="playQuizButton" class="btn primary-btn large-btn" aria-label="Botão para jogar o quiz">
-                    <h3>Jogar Quiz</h3>
-                    <p>Escolha uma categoria e divirta-se!</p>
-                </button>
-
-                <button id="updateQuestionsButton" class="btn secondary-btn large-btn" aria-label="Botão para atualizar perguntas">
-                    <h3>Atualizar Perguntas</h3>
-                    <p>Carregar novas perguntas via XML</p>
-                </button>
-
-                <button id="viewHistoryButton" class="btn secondary-btn large-btn" aria-label="Botão para ver o histórico de resultados">
-                    <h3>Ver Histórico</h3>
-                    <p>Acompanhe seu progresso e resultados</p>
-                </button>
-
-                <button id="aboutUsButton" class="btn secondary-btn large-btn" aria-label="Botão para informações sobre o quiz">
-                    <h3>Sobre Nós</h3>
-                    <p>Informações sobre o projeto</p>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <section id="categorySelectionScreen" class="screen hidden" role="region" aria-labelledby="categoryTitleHeading">
-        <div class="category-selection-container">
-            <h1 id="categoryTitleHeading">Escolha a Categoria</h1>
-            <div class="category-grid" role="group" aria-label="Categorias de quiz">
-                <button class="btn category-btn" data-category="trivium" aria-label="Categoria Trivium: Lógica, Gramática e Retórica">
-                    <h3>Trivium</h3>
-                    <p>Lógica, Gramática e Retórica</p>
-                </button>
-                <button class="btn category-btn" data-category="quadrivium" aria-label="Categoria Quadrivium: Aritmética, Geometria, Música e Astronomia">
-                    <h3>Quadrivium</h3>
-                    <p>Aritmética, Geometria, Música e Astronomia</p>
-                </button>
-                <button class="btn category-btn" data-category="bible" aria-label="Categoria Bíblia: Conhecimento Bíblico">
-                    <h3>Bíblia</h3>
-                    <p>Conhecimento Bíblico</p>
-                </button>
-                <button class="btn category-btn" data-category="generalCulture" aria-label="Categoria Cultura Geral: História e Geografia Universal">
-                    <h3>Cultura Geral</h3>
-                    <p>História e Geografia Universal</p>
-                </button>
-                <button class="btn category-btn" data-category="mwangole" aria-label="Categoria Mwangole: História e Geografia de Angola">
-                    <h3>Mwangole</h3>
-                    <p>História e Geografia de Angola</p>
-                </button>
-                <button class="btn category-btn" data-category="misturaTudo" aria-label="Categoria Mistura Tudo: Conhecimento de todas as áreas">
-                    <h3>Mistura Tudo</h3>
-                    <p>Conhecimento de todas as áreas</p>
-                </button>
-            </div>
-            <button id="backToMainMenuFromCategories" class="btn secondary-btn" aria-label="Voltar ao Menu Principal">Voltar ao Menu Principal</button>
-        </div>
-    </section>
-
-    <section id="levelSelectionScreen" class="screen hidden" role="region" aria-labelledby="levelCategoryTitle">
-        <div class="level-selection-container">
-            <h2 id="levelCategoryTitle"></h2>
-            <div id="levelSelection" class="level-selection-grid" role="group" aria-label="Níveis do quiz">
-                <h3>Escolha o Nível:</h3>
-            </div>
-            <button id="backToCategoriesFromLevels" class="btn secondary-btn" aria-label="Voltar às Categorias">Voltar às Categorias</button>
-        </div>
-    </section>
-
-    <section id="questionScreen" class="screen hidden" role="region" aria-labelledby="questionCategoryLevelTitle">
-        <div class="quiz-container">
-            <h2 id="questionCategoryLevelTitle"></h2>
-            <div class="timer-container" role="timer" aria-live="polite" aria-atomic="true">
-                ⏰ Tempo Restante: <span id="timer"></span> segundos
-            </div>
-            <p class="question-counter" aria-live="polite">Pergunta <span id="currentQuestionNum">1</span> de <span id="totalQuestionsNum">15</span></p>
-            <h3 id="questionText" aria-live="polite"></h3>
-            <button id="hintButton" class="btn secondary-btn hint-btn" aria-label="Dica: remove opções incorretas, custa 5 pontos">💡 Dica (-5 Pontos)</button>
-            <div id="optionsContainer" class="options-container" role="radiogroup" aria-labelledby="questionText">
-                </div>
-            <button id="nextQuestionButton" class="btn primary-btn hidden" aria-label="Próxima Pergunta">Próxima Pergunta</button>
-            <p id="feedbackMessage" class="feedback-message" aria-live="assertive" aria-atomic="true"></p>
-        </div>
-        <button id="backToLevelsFromQuestions" class="btn secondary-btn" aria-label="Voltar aos Níveis">Voltar aos Níveis</button>
-    </section>
-
-    <section id="resultScreen" class="screen hidden" role="region" aria-labelledby="resultTitle">
-        <div class="result-container">
-            <h1 id="resultTitle">Resultado do Quiz</h1>
-            <p>Sua pontuação final: <span id="finalScore">0</span> de <span id="maxScore">0</span></p>
-            <p id="resultMessage" aria-live="polite"></p>
-            <div id="quizDetails" class="quiz-details" role="group" aria-label="Detalhes das respostas do quiz">
-                <h2>Detalhes das Respostas:</h2>
-            </div>
-            <button id="playAgainButton" class="btn primary-btn" aria-label="Jogar Novamente">Jogar Novamente</button>
-            <button id="backToMainFromResults" class="btn secondary-btn" aria-label="Voltar ao Menu Principal">Voltar ao Menu Principal</button>
-        </div>
-    </section>
-
-    <section id="historyScreen" class="screen hidden" role="region" aria-labelledby="historyTitle">
-        <div class="content-container">
-            <h1 id="historyTitle">Histórico de Atividade</h1>
-            <div id="historyList" class="history-list" role="list" aria-label="Lista de histórico de quizzes jogados">
-                <p>Nenhum quiz jogado ainda.</p>
-            </div>
-            <button id="clearHistoryButton" class="btn secondary-btn clear-history-btn" aria-label="Limpar todo o histórico de quizzes">Limpar Histórico</button>
-            <button id="backToMainMenuFromHistory" class="btn secondary-btn" aria-label="Voltar ao Menu Principal">Voltar ao Menu Principal</button>
-        </div>
-    </section>
-
-    <section id="updateQuestionsScreen" class="screen hidden" role="region" aria-labelledby="updateTitle">
-        <div class="content-container">
-            <h1 id="updateTitle">Atualizar Perguntas</h1>
-            <p>Funcionalidade para carregar perguntas de um arquivo XML.</p>
-            <p>Por favor, selecione o arquivo XML:</p>
-            <input type="file" id="xmlFileInput" accept=".xml" aria-label="Selecione um arquivo XML de perguntas">
-            <button id="loadXmlButton" class="btn primary-btn" aria-label="Carregar arquivo XML">Carregar XML</button>
-            <p id="xmlFeedback" aria-live="polite" aria-atomic="true"></p>
-            <button id="backToMainMenuFromUpdate" class="btn secondary-btn" aria-label="Voltar ao Menu Principal">Voltar ao Menu Principal</button>
-        </div>
-    </section>
-
-    <section id="aboutUsScreen" class="screen hidden" role="region" aria-labelledby="aboutUsStaticTitle">
-        <div class="content-container">
-            <img src="assets/logo.png" alt="Logo do Quiz, um cérebro sorridente com um ponto de interrogação" class="logo">
-            <h1 id="aboutUsStaticTitle">Sobre o Quiz do Conhecimento</h1>
-            <p>
-                Esta aplicação foi desenvolvida com paixão pela educação e pela tecnologia para proporcionar uma experiência de aprendizagem interativa e divertida. Nosso objetivo é estimular o conhecimento em diversas áreas, desde os fundamentos clássicos até o conhecimento cultural e local.
-            </p>
-            <p>
-                O "Quiz do Conhecimento" é um projeto de código aberto, criado para ser acessível e adaptável, com foco em uma experiência gamificada para jovens aprendizes. Agradecemos o seu interesse e esperamos que se divirta e aprenda muito!
-            </p>
-            <p><strong>Versão:</strong> 1.0.0</p>
-            <p><strong>Desenvolvido por:</strong> Sua Equipe/Nome</p>
-            <p><strong>Ano:</strong> 2024-2025</p>
-
-            <button id="backToMainMenuFromAboutUs" class="btn secondary-btn" aria-label="Voltar ao Menu Principal">Voltar ao Menu Principal</button>
-        </div>
-    </section>
-    </main>
-
-    <div id="loadingOverlay" class="loading-overlay hidden" role="status" aria-live="assertive" aria-label="Carregando. Por favor, aguarde.">
-        <div class="spinner"></div>
-        <p>A Carregar Perguntas...</p>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
